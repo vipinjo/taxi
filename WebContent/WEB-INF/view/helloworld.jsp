@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
- <title>Amelia Operations </title>
+ <title>Amalia Operations </title>
 </head>
 <body>  
     <h2>Hello World Spring</h2>
