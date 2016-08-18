@@ -4,7 +4,7 @@
  <title>Amalia Operations </title>
 </head>
 <body>  
-    <h2>Hello World Spring</h2>
+    <h2>Hello World Amalia Operations</h2>
     <br><br>
     Student name: ${param.studentName }
     
