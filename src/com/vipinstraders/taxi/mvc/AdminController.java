@@ -1,14 +1,16 @@
-package com.luv2code.springdemo.mvc;
+package com.vipinstraders.taxi.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class AdminController {
 	
-	@RequestMapping("/")
+	@RequestMapping("/admin")
 	public String showPage() {
-		return "main-menu";
+		return "admin-page";
 	}
+	
+	
 
 }

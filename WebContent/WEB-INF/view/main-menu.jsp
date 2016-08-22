@@ -5,13 +5,15 @@
 
   <body>
     <%@include file="navigation.jsp" %>
-    <div class="container">
-
-      <div class="taxi-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <div class="container" style="margin-top:50px;">
+    <div class="row">
+     <div class="col-md-12">
+      <h2>
+    Hello World ! This is landing page of Amaliya operaions
+      </h2>
       </div>
-
+    </div> 
+    
     </div><!-- /.container -->
      <%@include file="footer.jsp" %>
      
