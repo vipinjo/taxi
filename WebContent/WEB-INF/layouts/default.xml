@@ -10,6 +10,14 @@
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/main-menu.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
+		<put-list-attribute name="javascripts">
+            <add-attribute value="js/admin-car.js" />
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="css/bootstrap.min.css" />
+            <add-attribute value="css/font-awesome.min.css" />
+            <add-attribute value="css/taxi.css" />
+        </put-list-attribute>
 	</definition>
 	
 	<definition name="home" extends="base">
@@ -23,6 +31,10 @@
 		<put-attribute name="title" value="Amalia Operations - Car deatils"></put-attribute>
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-admin-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin-car.jsp"></put-attribute>
+		<put-attribute name="javaScript" value="/WEB-INF/tiles/admin-car-script.jsp"></put-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
 	</definition>
 
 </tiles-definitions>       

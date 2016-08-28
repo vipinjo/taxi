@@ -1,4 +1,9 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
+<tiles:importAttribute name="javascripts"/>
+<tiles:importAttribute name="stylesheets"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +15,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="images/favicon.ico">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/taxi.css" rel="stylesheet">
+<!-- stylesheets -->
+    <c:forEach var="css" items="${stylesheets}">
+        <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
+    </c:forEach>
+<!-- end stylesheets -->
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 </head>
 <body>
@@ -31,10 +39,8 @@
 	<div>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
-
-</body>
-
-<!-- Bootstrap core JavaScript
+	
+	<!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script
@@ -50,8 +56,16 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
 	integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
 	crossorigin="anonymous"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+
+<!-- scripts -->
+    <c:forEach var="script" items="${javascripts}">
+        <script src="<c:url value="${script}"/>"></script>
+    </c:forEach>
+
+</body>
+
 
 </html>

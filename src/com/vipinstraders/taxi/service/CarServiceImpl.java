@@ -1,5 +1,7 @@
 package com.vipinstraders.taxi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +20,6 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public void addCar(Car car) {
-        System.out.println("Car make : " + car.getMake());
-        System.out.println("Car rego : " + car.getRego());
         dao.createCar(car);
 	}
 
@@ -30,9 +30,15 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public void deleteCar() {
-		// TODO Auto-generated method stub
+	public void deleteCar(String id) {
+		//TODO: delete the car
+		// implement the method here
 
+	}
+	
+	@Override
+	public List<Car> getAllCars() {
+		return dao.getAllCars();
 	}
 
 }
