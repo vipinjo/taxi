@@ -10,7 +10,7 @@ public class AdminController {
 	@RequestMapping("/admin")
 	public String showPage(Model model) {
 		model.addAttribute("mainMenu", "admin");
-		return "admin-page";
+		return "admin";
 	}
 	
 	
