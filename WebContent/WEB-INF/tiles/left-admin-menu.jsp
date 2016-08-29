@@ -6,7 +6,7 @@
     <a class="nav-link" href="#">Driver</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Income Type</a>
+    <a class="nav-link" href="adminIncomeType">Income Type</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Expense Type</a>

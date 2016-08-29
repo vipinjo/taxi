@@ -1,4 +1,4 @@
-package com.vipinstraders.taxi.service;
+package com.vipinstraders.taxi.service.admin;
 
 import java.util.List;
 

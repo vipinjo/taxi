@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vipinstraders.taxi.domain.Car;
-import com.vipinstraders.taxi.service.CarService;
+import com.vipinstraders.taxi.service.admin.CarService;
 
 @Controller
 public class CarController {

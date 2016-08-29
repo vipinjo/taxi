@@ -1,4 +1,4 @@
-package com.vipinstraders.taxi.service;
+package com.vipinstraders.taxi.service.admin;
 
 import java.util.List;
 
@@ -26,7 +26,6 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public void editCar(Car car) {
 		dao.editCar(car);
-
 	}
 
 	@Override
