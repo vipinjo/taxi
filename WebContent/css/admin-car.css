@@ -1,4 +1,4 @@
-#errorAlert {
-	display:none;
+.errAlert {
+    display:none;
 	text-align: center;
 }

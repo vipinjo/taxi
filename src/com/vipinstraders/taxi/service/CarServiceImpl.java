@@ -24,15 +24,14 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public void editCar() {
-		// TODO Auto-generated method stub
+	public void editCar(Car car) {
+		dao.editCar(car);
 
 	}
 
 	@Override
 	public void deleteCar(String id) {
-		//TODO: delete the car
-		// implement the method here
+		dao.deleteCar(id);
 
 	}
 	

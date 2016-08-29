@@ -50,6 +50,25 @@ public class CarController {
 		return "admin";
 	}
 	
+	@RequestMapping("/editCar")
+	public String editCar(HttpServletRequest request, Model model) {
+		
+		 Car car = new Car();
+		 
+		 car.setId(Integer.parseInt(request.getParameter("carId")));
+		 car.setMake(request.getParameter("editCarMake"));
+		 car.setRego(request.getParameter("editRego"));
+		 
+		 carService.editCar(car);
+		 
+		 List<Car> carList = carService.getAllCars();
+	        if (null != carList) {
+	        	model.addAttribute("carList", carList);
+	        }
+		 
+		return "admin";
+	}
+	
 	
 
 }

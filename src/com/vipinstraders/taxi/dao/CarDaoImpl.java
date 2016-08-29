@@ -30,6 +30,13 @@ public class CarDaoImpl implements CarDao {
 		this.jdbcTemplate
 				.update("insert into car  (make, rego) values ('" + car.getMake() + "', '" + car.getRego() + "')");
 	}
+	
+	@Override
+	public void editCar(Car car) {
+		this.jdbcTemplate.update(
+		        "update car set make = ?, rego = ? where id = ?",
+		        car.getMake(), car.getRego(), car.getId());
+	}
 
 	@Override
 	public List<Car> getAllCars() {
@@ -45,6 +52,14 @@ public class CarDaoImpl implements CarDao {
 		            }
 		        });
 		return cars;
+	}
+
+	@Override
+	public void deleteCar(String id) {
+		this.jdbcTemplate.update(
+		        "delete from car where id = ?",
+		        Long.valueOf(id));
+		
 	}
 
 }

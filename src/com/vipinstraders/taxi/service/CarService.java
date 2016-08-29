@@ -8,7 +8,7 @@ public interface CarService {
 	
 	public void addCar(Car car);
 	
-	public void editCar();
+	public void editCar(Car car);
 	
 	public void deleteCar(String id);
 	
