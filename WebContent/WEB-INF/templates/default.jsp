@@ -3,6 +3,9 @@
 
 <tiles:importAttribute name="javascripts"/>
 <tiles:importAttribute name="stylesheets"/>
+<tiles:importAttribute name="topNavigationMenuItemName" scope="request"/>
+<tiles:importAttribute name="leftNavigationMenuItemName" scope="request"/>
+
 
 <!DOCTYPE html>
 <html lang="en">

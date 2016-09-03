@@ -23,7 +23,11 @@ public class AdminIncomeController {
 	}
 
 	@RequestMapping("/adminIncomeType")
-	public String showAdminIncomePage() {
+	public String showAdminIncomePage(Model model) {
+		List<IncomeType> incomeTypeList = incomeTypeService.getAll();
+		if (null != incomeTypeList) {
+			model.addAttribute("incomeTypeList", incomeTypeList);
+		}
 		return "adminIncome";
 	}
 
@@ -54,9 +58,8 @@ public class AdminIncomeController {
 
 	@RequestMapping("/editIncomeType")
 	public String editCar(HttpServletRequest request, Model model) {
-
-		IncomeType incomeType = new IncomeType(Integer.parseInt(request.getParameter("carId")),
-				request.getParameter("incomeName"), request.getParameter("incomeDesc"));
+		IncomeType incomeType = new IncomeType(Integer.parseInt(request.getParameter("incomeTypeId")),
+				request.getParameter("editIncomeName"), request.getParameter("editIncomeDesc"));
 
 		incomeTypeService.editIncomeType(incomeType);
 

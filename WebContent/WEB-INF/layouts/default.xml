@@ -10,6 +10,8 @@
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/main-menu.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="home"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value=""></put-attribute>
 		<put-list-attribute name="javascripts">
             <add-attribute value="js/bootstrap.min.js" />
             <add-attribute value="js/ie10-viewport-bug-workaround.js" />
@@ -26,6 +28,8 @@
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/main-menu.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="home"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value=""></put-attribute>
 	</definition>
 	
 	<definition name="admin" extends="base">
@@ -33,6 +37,8 @@
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-admin-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin-car.jsp"></put-attribute>
 		<put-attribute name="javaScript" value="/WEB-INF/tiles/admin-car-script.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="admin"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="adminCar"></put-attribute>
 		<put-list-attribute name="javascripts" inherit="true">
             <add-attribute value="js/admin-car.js" />
         </put-list-attribute>
@@ -45,8 +51,52 @@
 		<put-attribute name="title" value="Amalia Operations - Income Type"></put-attribute>
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-admin-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/admin-income.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="admin"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="adminIncome"></put-attribute>
 		<put-list-attribute name="javascripts" inherit="true">
             <add-attribute value="js/admin-income.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="adminExpense" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Expense Type"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-admin-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin-expense.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="admin"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="adminExpense"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="js/admin-expense.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="shiftReport" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Expense Type"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-shift-report-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/shift-report.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="shiftReports"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="viewShiftReport"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="js/admin-expense.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="showAddNewShiftReportPage" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Expense Type"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-shift-report-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/add-new-shift-report.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="shiftReports"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="addNewShiftReport"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="js/admin-expense.js" />
         </put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
             <add-attribute value="css/admin-car.css" />

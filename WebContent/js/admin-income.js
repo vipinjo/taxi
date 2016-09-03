@@ -1,12 +1,8 @@
-$("#saveCar").click(function() {
+$("#saveIncomeType").click(function() {
 	var errorMessage = "";
 	
-	if ($("#carMake").val() == "" ) {
-		errorMessage += "Please enter Car Make<br/>";
-	}
-	
-	if ($("#rego").val() == "" ) {
-		errorMessage += "Please enter rego<br/>";
+	if ($("#incomeName").val() == "" ) {
+		errorMessage += "Please enter Income Name<br/>";
 	}
 	
 	if (errorMessage != "") {
@@ -17,35 +13,35 @@ $("#saveCar").click(function() {
 	
 })
 
-function showEditModal(id, rego, make) {
-	$('#carId').val(id);
-	$('#editCarMake').val(make);
-	$('#editRego').val(rego);
-	$('#editCarAlert').hide();
-	$("#editCarModal").modal();
+function showEditModal(id, name, description) {
+	setValuesInEditIncomeTypeModal(id, name, description)
+	$('#editIncomeTypeAlert').hide();
+	$("#editIncomeTypeModal").modal();
 }
 
-$("#editCar").click(function() {
+function setValuesInEditIncomeTypeModal(id, name, description) {
+	$('#incomeTypeId').val(id);
+	$('#editIncomeName').val(name);
+	$('#editIncomeDesc').val(description);
+}
+
+$("#editIncomeType").click(function() {
 var errorMessage = "";
 	
-	if ($("#editCarMake").val() == "" ) {
-		errorMessage += "Hey, I think you forgot to enter the Car Make<br/>";
-	}
-	
-	if ($("#editRego").val() == "" ) {
-		errorMessage += "Sorry Please enter rego<br/>";
+	if ($("#editIncomeName").val() == "" ) {
+		errorMessage += "Hey, I think you forgot to enter the Income Name<br/>";
 	}
 	
 	if (errorMessage != "") {
-		$("#editCarAlert").html(errorMessage);
-		$("#editCarAlert").show();
+		$("#editIncomeTypeAlert").html(errorMessage);
+		$("#editIncomeTypeAlert").show();
 		return false;
 	}
 	
 })
 
-$("#editCarModalClose").click(function() {
-	$('#editCarModal').modal('hide');
+$("#editIncomeTypeModalClose").click(function() {
+	$('#editIncomeTypeModal').modal('hide');
 })
 
 
