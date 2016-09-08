@@ -96,9 +96,11 @@
 		<put-attribute name="topNavigationMenuItemName" value="shiftReports"></put-attribute>
 		<put-attribute name="leftNavigationMenuItemName" value="addNewShiftReport"></put-attribute>
 		<put-list-attribute name="javascripts" inherit="true">
-            <add-attribute value="js/admin-expense.js" />
+            <add-attribute value="js/jquery.datetimepicker.full.min.js" />
+            <add-attribute value="js/add-new-shift-report.js" />
         </put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="css/jquery.datetimepicker.min.css" />
             <add-attribute value="css/admin-car.css" />
         </put-list-attribute>
 	</definition>

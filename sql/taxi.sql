@@ -15,3 +15,15 @@ create table income_type (id int primary key auto_increment, name varchar(100),
 
 create table expense_type (id int primary key auto_increment, name varchar(100),
  description varchar(300)); 
+ 
+create table driver (id int primary key auto_increment, family_name varchar(100),
+    given_name varchar(100), dc varchar(50), abn varchar(50)); 
+    
+create table shift_report (id int primary key auto_increment, 
+    report_date DATETIME, finish_date DATETIME, 
+    car_id int, driver_id int, meter_rev decimal(5,2), 
+    owner_rev decimal(5,2), owner_subsidy decimal(5,2), bailment_fee decimal(5, 2),
+    paper_voucher decimal(5, 2), fuel_receipt decimal(5, 2), online_receipt decimal(5, 2),
+    total decimal(5, 2),
+    foreign key (driver_id) references driver(id),
+    foreign key (car_id) references car(id));      
