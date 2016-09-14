@@ -2,6 +2,9 @@ package com.vipinstraders.taxi.domain;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class ShiftReport {
 
 	private int id;
@@ -17,6 +20,8 @@ public class ShiftReport {
 	private double fuelReceipt;
 	private double onlineReceipt;
 	private double total;
+	
+	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	public ShiftReport() {
 	}
@@ -123,6 +128,11 @@ public class ShiftReport {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	
+	@Override
+	public String toString() {
+		return gson.toJson(this);
 	}
 
 }

@@ -1,10 +1,13 @@
-package com.vipinstraders.taxi.service.admin;
+package com.vipinstraders.taxi.service.shiftreport;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.vipinstraders.taxi.dao.ShiftReportDao;
 import com.vipinstraders.taxi.domain.ShiftReport;
+import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 
 @Component
 public class ShiftReportServiceImpl implements ShiftReportService {
@@ -23,8 +26,8 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 
 	@Override
-	public void edit(ShiftReport shiftReport) {
-		// TODO Auto-generated method stub
+	public void update(ShiftReport shiftReport) {
+		dao.update(shiftReport);
 
 	}
 
@@ -32,6 +35,16 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<ShiftReport> getShiftReport(ShiftReportSearchCriteria searchCriteria) {
+		return dao.getShiftReport(searchCriteria);
+	}
+
+	@Override
+	public ShiftReport getShiftReport(int id) {
+		return dao.getShiftReport(id);
 	}
 
 }

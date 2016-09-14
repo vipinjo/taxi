@@ -1,18 +1,23 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
     <div class="alert alert-danger errAlert" role="alert" id="errorAlert">
     </div>   
-	<form action="addShiftReport" id="addShiftReportForm">
+    <h3>${displayText}</h3>
+	<form action="${action}" id="addShiftReportForm" method="post">
+	    <input type="hidden" name="id" value="${shiftReport.id}"/>
+	    <input type="hidden" name="searchAfterEditStartDate" id="searchAfterEditStartDate" value="<fmt:formatDate value='${searchCriteria.startDate}' pattern='yyyy/MM/dd'/>"/>
+	    <input type="hidden" name="searchAfterEditEndDate" id="searchAfterEditEndDate" value="<fmt:formatDate value='${searchCriteria.endDate}' pattern='yyyy/MM/dd'/>"/>
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Start Time</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="startDate" name="startDate">
+				<input type="text" class="form-control" id="startDate" name="startDate" value="<fmt:formatDate value='${shiftReport.date}' pattern='yyyy/MM/dd HH:mm'/>">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Finish Time</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="finishDate" name="finishDate">
+				<input type="text" class="form-control" id="finishDate" name="finishDate" value="<fmt:formatDate value='${shiftReport.finishDate}' pattern='yyyy/MM/dd HH:mm'/>">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -20,7 +25,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="meterRevenue" name="meterRevenue" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" class="form-control" id="meterRevenue" name="meterRevenue" step="any" 
+                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.meterRevenue}">
                 </div>
 			</div>
 		</div>
@@ -30,7 +36,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="ownerRevenue" name="ownerRevenue" aria-label="Amount (to the nearest dollar)" readonly>
+                    <input type="number" class="form-control" id="ownerRevenue" name="ownerRevenue" step="any" 
+                    aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerRevenue}" readonly>
                 </div>
 			</div>
 		</div>
@@ -40,7 +47,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="subsidy" name="subsidy" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" class="form-control" id="subsidy" name="subsidy" step="any" 
+                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerSubsidy}">
                 </div>
 			</div>
 		</div>
@@ -50,7 +58,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="bailmentFee" name="bailmentFee" aria-label="Amount (to the nearest dollar)" readonly>
+                    <input type="number" class="form-control" id="bailmentFee" name="bailmentFee" step="any"
+                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.bailmentFee}" readonly>
                 </div>
 			</div>
 		</div>
@@ -60,7 +69,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="paperVoucher" name="paperVoucher" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" class="form-control" id="paperVoucher" name="paperVoucher" step="any"
+                         aria-label="Amount (to the nearest dollar)" value="${shiftReport.paperVoucher}">
                 </div>
 			</div>
 		</div>
@@ -70,7 +80,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="onlineReceipt" name="onlineReceipt" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" class="form-control" id="onlineReceipt" name="onlineReceipt" step="any" 
+                    aria-label="Amount (to the nearest dollar)" value="${shiftReport.onlineReceipt}">
                 </div>
 			</div>
 		</div>
@@ -80,7 +91,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="fuelReceipt" name="fuelReceipt" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" class="form-control" id="fuelReceipt" name="fuelReceipt" step="any" 
+                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.fuelReceipt}">
                 </div>
 			</div>
 		</div>
@@ -90,7 +102,8 @@
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="total" name="total" aria-label="Amount (to the nearest dollar)" readonly>
+                    <input type="number" class="form-control" id="total" name="total" step="any" 
+                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.total}" readonly>
                 </div>
 			</div>
 		</div>

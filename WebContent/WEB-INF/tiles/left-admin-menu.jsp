@@ -10,7 +10,7 @@
 		    </c:choose>>Car</a>
 
 	</li>
-	<li class="nav-item"><a href="#"
+	<li class="nav-item"><a href="adminDriver"
 		<c:choose>
 		    <c:when test="${leftNavigationMenuItemName == 'driver'}"> class="nav-link active" </c:when>
 		    <c:otherwise>
