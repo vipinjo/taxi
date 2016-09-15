@@ -10,8 +10,8 @@ public class ShiftReport {
 	private int id;
 	private Date date;
 	private Date finishDate;
-	private int carId;
-	private int driverId;
+	private Driver driver;
+	private Car car;
 	private double meterRevenue;
 	private double ownerRevenue;
 	private double ownerSubsidy;
@@ -20,6 +20,8 @@ public class ShiftReport {
 	private double fuelReceipt;
 	private double onlineReceipt;
 	private double total;
+	private int startMeterReading;
+	private int endMeterReading;
 	
 	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -50,20 +52,20 @@ public class ShiftReport {
 		this.finishDate = finishDate;
 	}
 
-	public int getCarId() {
-		return carId;
+	public Car getCar() {
+		return car;
 	}
 
-	public void setCarId(int carId) {
-		this.carId = carId;
+	public void setCar(Car car) {
+		this.car = car;
 	}
 
-	public int getDriverId() {
-		return driverId;
+	public Driver getDriver() {
+		return driver;
 	}
 
-	public void setDriverId(int driverId) {
-		this.driverId = driverId;
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 
 	public double getMeterRevenue() {
@@ -128,6 +130,22 @@ public class ShiftReport {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	
+	public int getStartMeterReading() {
+		return startMeterReading;
+	}
+
+	public void setStartMeterReading(int startMeterReading) {
+		this.startMeterReading = startMeterReading;
+	}
+
+	public int getEndMeterReading() {
+		return endMeterReading;
+	}
+
+	public void setEndMeterReading(int endMeterReading) {
+		this.endMeterReading = endMeterReading;
 	}
 	
 	@Override

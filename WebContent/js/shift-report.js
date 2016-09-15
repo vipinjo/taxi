@@ -32,6 +32,10 @@ function showShiftReportDetais(details) {
 	var obj = JSON.parse(data);
 	$("#shiftReportDetailsTable").append("<tr> <td> Start Time </td> <td>" + obj.date  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Finish Time </td> <td>" + obj.finishDate  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Driver </td> <td>" + obj.driver.givenName + " " + obj.driver.familyName  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Car </td> <td>" + obj.car.rego +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Start Meter Reading </td> <td>" + obj.startMeterReading +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> End Meter Reading </td> <td>" + obj.endMeterReading +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Meter Revenue </td> <td>" + obj.meterRevenue  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Owner Revenue </td> <td>" + obj.ownerRevenue  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Owner Subsidy </td> <td>" + obj.ownerSubsidy  +"</td></tr>");

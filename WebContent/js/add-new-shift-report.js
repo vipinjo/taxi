@@ -148,6 +148,14 @@ $("#saveShiftReport").click(function() {
 		errorMessage += "Please enter Meter Revenue<br/>";
 	}
 	
+	if ($("#driver").val() == "" ) {
+		errorMessage += "Please select Driver<br/>";
+	}
+	
+	if ($("#car").val() == "" ) {
+		errorMessage += "Please select Car<br/>";
+	}
+	
 	if (errorMessage != "") {
 		$("#errorAlert").html(errorMessage);
 		$("#errorAlert").show();

@@ -21,9 +21,10 @@ create table driver (id int primary key auto_increment, family_name varchar(100)
     
 create table shift_report (id int primary key auto_increment, 
     report_date DATETIME, finish_date DATETIME, 
-    car_id int, driver_id int, meter_rev decimal(5,2), 
-    owner_rev decimal(5,2), owner_subsidy decimal(5,2), bailment_fee decimal(5, 2),
-    paper_voucher decimal(5, 2), fuel_receipt decimal(5, 2), online_receipt decimal(5, 2),
-    total decimal(5, 2),
+    car_id int, driver_id int, start_meter_reading int,
+    end_meter_reading int, meter_rev decimal(10,2), 
+    owner_rev decimal(10,2), owner_subsidy decimal(10,2), bailment_fee decimal(10, 2),
+    paper_voucher decimal(10, 2), fuel_receipt decimal(10, 2), online_receipt decimal(10, 2),
+    total decimal(10, 2),
     foreign key (driver_id) references driver(id),
-    foreign key (car_id) references car(id));      
+    foreign key (car_id) references car(id));  

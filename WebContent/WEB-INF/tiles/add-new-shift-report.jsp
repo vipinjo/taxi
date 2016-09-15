@@ -21,12 +21,48 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label for="date" class="col-sm-2 col-form-label">Driver</label>
+			<div class="col-sm-6">
+				<select class="form-control" id="driver" name="driver" >
+                    <option></option>
+                    <c:forEach var="tempDriver" items="${driverList}">
+                        <option value="${tempDriver.id}" <c:if test = "${tempDriver.id == shiftReport.driver.id }">selected</c:if>>${tempDriver.givenName} ${tempDriver.familyName}</option>
+                    </c:forEach>
+                </select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="date" class="col-sm-2 col-form-label">Car</label>
+			<div class="col-sm-6">
+				<select class="form-control" id="car" name="car">
+                    <option></option>
+                    <c:forEach var="tempCar" items="${carList}">
+                        <option value="${tempCar.id}" <c:if test = "${tempCar.id == shiftReport.car.id }">selected</c:if>>${tempCar.rego}</option>
+                    </c:forEach>
+                </select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="startMeterReading" class="col-sm-2 col-form-label">Start Meter Reading</label>
+			<div class="col-sm-4">
+                <input type="number" class="form-control" id="startMeterReading" name="startMeterReading"
+                   min="0" max="10000000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.startMeterReading}">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="startMeterReading" class="col-sm-2 col-form-label">End Meter Reading</label>
+			<div class="col-sm-4">
+                <input type="number" class="form-control" id="endMeterReading" name="endMeterReading" 
+                    min="0" max="10000000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.endMeterReading}">
+			</div>
+		</div>
+		<div class="form-group row">
 			<label for="meterRevenue" class="col-sm-2 col-form-label">Meter Revenue</label>
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="meterRevenue" name="meterRevenue" step="any" 
-                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.meterRevenue}">
+                       min="0" max="100000"  aria-label="Amount (to the nearest dollar)" value="${shiftReport.meterRevenue}">
                 </div>
 			</div>
 		</div>
@@ -37,7 +73,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="ownerRevenue" name="ownerRevenue" step="any" 
-                    aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerRevenue}" readonly>
+                    min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerRevenue}" readonly>
                 </div>
 			</div>
 		</div>
@@ -48,7 +84,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="subsidy" name="subsidy" step="any" 
-                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerSubsidy}">
+                      min="0" max="100000"  aria-label="Amount (to the nearest dollar)" value="${shiftReport.ownerSubsidy}">
                 </div>
 			</div>
 		</div>
@@ -59,7 +95,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="bailmentFee" name="bailmentFee" step="any"
-                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.bailmentFee}" readonly>
+                       min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.bailmentFee}" readonly>
                 </div>
 			</div>
 		</div>
@@ -70,7 +106,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="paperVoucher" name="paperVoucher" step="any"
-                         aria-label="Amount (to the nearest dollar)" value="${shiftReport.paperVoucher}">
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.paperVoucher}">
                 </div>
 			</div>
 		</div>
@@ -81,7 +117,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="onlineReceipt" name="onlineReceipt" step="any" 
-                    aria-label="Amount (to the nearest dollar)" value="${shiftReport.onlineReceipt}">
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.onlineReceipt}">
                 </div>
 			</div>
 		</div>
@@ -92,7 +128,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="fuelReceipt" name="fuelReceipt" step="any" 
-                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.fuelReceipt}">
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.fuelReceipt}">
                 </div>
 			</div>
 		</div>
@@ -103,7 +139,7 @@
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="total" name="total" step="any" 
-                        aria-label="Amount (to the nearest dollar)" value="${shiftReport.total}" readonly>
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.total}" readonly>
                 </div>
 			</div>
 		</div>

@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
+import com.vipinstraders.taxi.domain.Car;
+import com.vipinstraders.taxi.domain.Driver;
 import com.vipinstraders.taxi.domain.ShiftReport;
 import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 
@@ -37,7 +39,8 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 		
 		SimpleJdbcInsert insertShiftReport = new SimpleJdbcInsert(jdbcTemplate)
         .withTableName("shift_report")
-        .usingColumns("report_date", "finish_date", "meter_rev", 
+        .usingColumns("report_date", "finish_date", "car_id", "driver_id",
+        		"start_meter_reading", "end_meter_reading", "meter_rev", 
         		"owner_rev", "owner_subsidy", "bailment_fee", "paper_voucher", 
         		"fuel_receipt", "online_receipt", "total")
         .usingGeneratedKeyColumns("id");
@@ -45,6 +48,10 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 		Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("report_date", startDate);
         parameters.put("finish_date", finishDate);
+        parameters.put("car_id", shiftReport.getCar().getId());
+        parameters.put("driver_id", shiftReport.getDriver().getId());
+        parameters.put("start_meter_reading", shiftReport.getStartMeterReading());
+        parameters.put("end_meter_reading", shiftReport.getEndMeterReading());
         parameters.put("meter_rev", shiftReport.getMeterRevenue());
         parameters.put("owner_rev", shiftReport.getOwnerRevenue());
         parameters.put("owner_subsidy", shiftReport.getOwnerSubsidy());
@@ -68,10 +75,14 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 	@Override
 	public void update(ShiftReport shiftReport) {
 		StringBuffer sql = new StringBuffer("UPDATE shift_report SET report_date=?, finish_date=?, ")
+				.append("car_id=?, driver_id=?, ")
+				.append("start_meter_reading=?, end_meter_reading=?, ")
 				.append("meter_rev=?, owner_rev=?, owner_subsidy=?, bailment_fee=?, ")
 				.append("paper_voucher=?, fuel_receipt=?, online_receipt=?, total=? where id=?");
 		
         jdbcTemplate.update(sql.toString(), new Object[]{shiftReport.getDate(), shiftReport.getFinishDate(),
+        		shiftReport.getCar().getId(), shiftReport.getDriver().getId(),
+        		shiftReport.getStartMeterReading(), shiftReport.getEndMeterReading(),
         		shiftReport.getMeterRevenue(), shiftReport.getOwnerRevenue(), shiftReport.getOwnerSubsidy(),
         		shiftReport.getBailmentFee(), shiftReport.getPaperVoucher(), shiftReport.getFuelReceipt(), shiftReport.getOnlineReceipt(),
         		shiftReport.getTotal(), shiftReport.getId()});
@@ -85,10 +96,16 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 
 	@Override
 	public List<ShiftReport> getShiftReport(ShiftReportSearchCriteria searchCriteria) {
-
-		StringBuffer query = new StringBuffer("select id, report_date, finish_date, car_id, ")
-				.append("driver_id, meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
-				.append("paper_voucher, fuel_receipt, online_receipt, total from shift_report ");
+		
+		StringBuffer query = new StringBuffer("SELECT shift_report.id, report_date, finish_date, car.id as car_id, ")
+				.append("car.rego as car_rego, car.make as car_make, ")
+				.append("driver.id as driver_id, driver.family_name as driver_family_name, ")
+				.append("driver.given_name as driver_given_name, driver.dc as driver_dc, driver.abn as driver_abn, ")
+				.append("start_meter_reading, end_meter_reading, ")
+				.append("meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
+				.append("paper_voucher, fuel_receipt, online_receipt, total FROM shift_report ")
+				.append("INNER JOIN car ON shift_report.car_id = car.id ")
+				.append("INNER JOIN driver ON shift_report.driver_id = driver.id ");
 		if (searchCriteria.getStartDate() != null && searchCriteria.getEndDate() == null) {
 			Date startDate = new Date(searchCriteria.getStartDate().getTime());
 			query.append("where report_date >= '" + startDate + " 00:00:00' ");
@@ -104,8 +121,20 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				shiftReport.setId(rs.getInt("id"));
 				shiftReport.setDate(rs.getTimestamp("report_date"));
 				shiftReport.setFinishDate(rs.getTimestamp("finish_date"));
-				shiftReport.setCarId(rs.getInt("car_id"));
-				shiftReport.setDriverId(rs.getInt("driver_id"));
+				Car car = new Car();
+				car.setId(rs.getInt("car_id"));
+				car.setRego(rs.getString("car_rego"));
+				car.setMake(rs.getString("car_make"));
+				shiftReport.setCar(car);
+				Driver driver = new Driver();
+				driver.setId(rs.getInt("driver_id"));
+				driver.setFamilyName(rs.getString("driver_family_name"));
+				driver.setGivenName(rs.getString("driver_given_name"));
+				driver.setDc(rs.getString("driver_dc"));
+				driver.setABN(rs.getString("driver_abn"));
+				shiftReport.setDriver(driver);
+				shiftReport.setStartMeterReading(rs.getInt("start_meter_reading"));
+				shiftReport.setEndMeterReading(rs.getInt("end_meter_reading"));
 				shiftReport.setMeterRevenue(rs.getDouble("meter_rev"));
 				shiftReport.setOwnerRevenue(rs.getDouble("owner_rev"));
 				shiftReport.setOwnerSubsidy(rs.getDouble("owner_subsidy"));
@@ -123,9 +152,16 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 	@Override
 	public ShiftReport getShiftReport(int id) {
 
-		StringBuffer query = new StringBuffer("select id, report_date, finish_date, car_id, ")
-				.append("driver_id, meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
-				.append("paper_voucher, fuel_receipt, online_receipt, total from shift_report where id=?");
+		StringBuffer query = new StringBuffer("SELECT shift_report.id, report_date, finish_date, ")
+				.append("shift_report.car_id as car_id, car.rego as car_rego, car.make as car_make, ")
+				.append("shift_report.driver_id as driver_id,  driver.family_name as driver_family_name, ")
+				.append("driver.given_name as driver_given_name, driver.dc as driver_dc, driver.abn as driver_abn, ")
+				.append("start_meter_reading, end_meter_reading, ")
+				.append("meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
+				.append("paper_voucher, fuel_receipt, online_receipt, total FROM shift_report ")
+				.append("INNER JOIN car ON shift_report.car_id = car.id ")
+				.append("INNER JOIN driver ON shift_report.driver_id = driver.id ")
+		        .append("WHERE shift_report.id=?");
 
 		ShiftReport shiftReport = this.jdbcTemplate.queryForObject(query.toString(), new Object[] { id },
 				new RowMapper<ShiftReport>() {
@@ -134,8 +170,20 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 						shiftReport.setId(rs.getInt("id"));
 						shiftReport.setDate(rs.getTimestamp("report_date"));
 						shiftReport.setFinishDate(rs.getTimestamp("finish_date"));
-						shiftReport.setCarId(rs.getInt("car_id"));
-						shiftReport.setDriverId(rs.getInt("driver_id"));
+						Car car = new Car();
+						car.setId(rs.getInt("car_id"));
+						car.setRego(rs.getString("car_rego"));
+						car.setMake(rs.getString("car_make"));
+						shiftReport.setCar(car);
+						Driver driver = new Driver();
+						driver.setId(rs.getInt("driver_id"));
+						driver.setFamilyName(rs.getString("driver_family_name"));
+						driver.setGivenName(rs.getString("driver_given_name"));
+						driver.setDc(rs.getString("driver_dc"));
+						driver.setABN(rs.getString("driver_abn"));
+						shiftReport.setDriver(driver);
+						shiftReport.setStartMeterReading(rs.getInt("start_meter_reading"));
+						shiftReport.setEndMeterReading(rs.getInt("end_meter_reading"));
 						shiftReport.setMeterRevenue(rs.getDouble("meter_rev"));
 						shiftReport.setOwnerRevenue(rs.getDouble("owner_rev"));
 						shiftReport.setOwnerSubsidy(rs.getDouble("owner_subsidy"));

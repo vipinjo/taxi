@@ -15,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vipinstraders.taxi.domain.Car;
 import com.vipinstraders.taxi.domain.Driver;
 import com.vipinstraders.taxi.domain.ShiftReport;
 import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
+import com.vipinstraders.taxi.service.admin.CarService;
 import com.vipinstraders.taxi.service.admin.DriverService;
 import com.vipinstraders.taxi.service.shiftreport.ShiftReportService;
 
@@ -26,11 +28,13 @@ public class ShiftReportController {
 	
 	private ShiftReportService service;
 	private DriverService driverService;
+	private CarService carService;
 	
 	@Autowired
-	public ShiftReportController(ShiftReportService service, DriverService driverService) {
+	public ShiftReportController(ShiftReportService service, DriverService driverService, CarService carService) {
 		this.service = service;
 		this.driverService = driverService;
+		this.carService = carService;
 	}
 
 	@RequestMapping("/shiftReport")
@@ -43,9 +47,11 @@ public class ShiftReportController {
 	public String showAddNewShiftReportPage(Model model) {
 		
 		List<Driver> allDrivers = driverService.getAllDrivers();
+		List<Car> allCars = carService.getAllCars();
 		
 		model.addAttribute("displayText", "Add New Shift Report");
 		model.addAttribute("driverList", allDrivers); 
+		model.addAttribute("carList", allCars); 
 		model.addAttribute("action", "addShiftReport");
 		return "showAddNewShiftReportPage";
 	}
@@ -64,6 +70,11 @@ public class ShiftReportController {
 			int id = Integer.parseInt(request.getParameter("id"));
 			ShiftReportSearchCriteria searchCriteria = getSearchCriteria(request);
 			ShiftReport shiftReport = service.getShiftReport(id);
+			
+			List<Driver> allDrivers = driverService.getAllDrivers();
+			List<Car> allCars = carService.getAllCars();
+			model.addAttribute("driverList", allDrivers); 
+			model.addAttribute("carList", allCars); 
 			
 			model.addAttribute("searchCriteria", searchCriteria);
 			model.addAttribute("shiftReport", shiftReport);
@@ -144,6 +155,26 @@ public class ShiftReportController {
 		
 		if (request.getParameter("id") != null && request.getParameter("id").length() > 0) {
 			shiftReport.setId(Integer.parseInt(request.getParameter("id")));
+		}
+		
+		if (request.getParameter("driver") != null && request.getParameter("driver").length() > 0) {
+			Driver driver = new Driver();
+			driver.setId(Integer.parseInt(request.getParameter("driver")));
+			shiftReport.setDriver(driver);
+		}
+		
+		if (request.getParameter("car") != null && request.getParameter("car").length() > 0) {
+			Car car = new Car();
+			car.setId(Integer.parseInt(request.getParameter("car")));
+			shiftReport.setCar(car);
+		}
+		
+		if (request.getParameter("startMeterReading") != null && request.getParameter("startMeterReading").length() > 0) {
+			shiftReport.setStartMeterReading(Integer.parseInt(request.getParameter("startMeterReading").split("\\.")[0]));
+		}
+		
+		if (request.getParameter("endMeterReading") != null && request.getParameter("endMeterReading").length() > 0) {
+			shiftReport.setEndMeterReading(Integer.parseInt(request.getParameter("endMeterReading").split("\\.")[0]));
 		}
 		
 		if (request.getParameter("meterRevenue") != null && request.getParameter("meterRevenue").length() > 0) {
