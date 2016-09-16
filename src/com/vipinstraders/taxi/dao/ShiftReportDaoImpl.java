@@ -78,7 +78,7 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				.append("car_id=?, driver_id=?, ")
 				.append("start_meter_reading=?, end_meter_reading=?, ")
 				.append("meter_rev=?, owner_rev=?, owner_subsidy=?, bailment_fee=?, ")
-				.append("paper_voucher=?, fuel_receipt=?, online_receipt=?, total=? where id=?");
+				.append("paper_voucher=?, fuel_receipt=?, online_receipt=?, total=? WHERE id=?");
 		
         jdbcTemplate.update(sql.toString(), new Object[]{shiftReport.getDate(), shiftReport.getFinishDate(),
         		shiftReport.getCar().getId(), shiftReport.getDriver().getId(),
@@ -89,9 +89,10 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 	}
 
 	@Override
-	public void delete(ShiftReport shiftReport) {
-		// TODO Auto-generated method stub
-
+	public void delete(int id) {
+		this.jdbcTemplate.update(
+		        "DELETE FROM shift_report WHERE id = ?",
+		        Long.valueOf(id));
 	}
 
 	@Override

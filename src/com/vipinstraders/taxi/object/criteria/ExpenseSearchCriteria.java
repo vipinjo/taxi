@@ -2,15 +2,15 @@ package com.vipinstraders.taxi.object.criteria;
 
 import java.util.Date;
 
-public class ShiftReportSearchCriteria {
+public class ExpenseSearchCriteria {
 	
 	private Date startDate;
 	private Date endDate;
 	
-	public ShiftReportSearchCriteria() {
+	public ExpenseSearchCriteria() {
 	}
 	
-	public ShiftReportSearchCriteria(Date startDate, Date finishDate) {
+	public ExpenseSearchCriteria(Date startDate, Date finishDate) {
 		setStartDate(startDate);
 		setEndDate(finishDate);
 	}

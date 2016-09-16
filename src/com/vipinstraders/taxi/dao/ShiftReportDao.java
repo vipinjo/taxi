@@ -11,7 +11,7 @@ public interface ShiftReportDao {
 	
 	public void update(ShiftReport shiftReport);
 	
-	public void delete(ShiftReport shiftReport);
+	public void delete(int id);
 	
 	public List<ShiftReport> getShiftReport(ShiftReportSearchCriteria searchCriteria);
 	

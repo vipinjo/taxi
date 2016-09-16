@@ -89,7 +89,7 @@
 	</definition>
 	
 	<definition name="shiftReport" extends="base">
-		<put-attribute name="title" value="Amalia Operations - Expense Type"></put-attribute>
+		<put-attribute name="title" value="Amalia Operations - Shift Report"></put-attribute>
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-shift-report-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/shift-report.jsp"></put-attribute>
 		<put-attribute name="topNavigationMenuItemName" value="shiftReports"></put-attribute>
@@ -105,7 +105,7 @@
 	</definition>
 	
 	<definition name="showAddNewShiftReportPage" extends="base">
-		<put-attribute name="title" value="Amalia Operations - Expense Type"></put-attribute>
+		<put-attribute name="title" value="Amalia Operations - Add shift Report"></put-attribute>
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-shift-report-menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/add-new-shift-report.jsp"></put-attribute>
 		<put-attribute name="topNavigationMenuItemName" value="shiftReports"></put-attribute>
@@ -116,6 +116,38 @@
         </put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
             <add-attribute value="css/jquery.datetimepicker.min.css" />
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="expenseReport" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Transaction"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-transaction-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/expense-report.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="transaction"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="viewExpense"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
+            <add-attribute value="js/shift-report.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+		    <add-attribute value="css/jquery.datetimepicker.min.css" />
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="addExpense" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Add Expense"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-transaction-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/add-expense.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="transaction"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="addExpense"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
+            <add-attribute value="js/add-expense.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+		    <add-attribute value="css/jquery.datetimepicker.min.css" />
             <add-attribute value="css/admin-car.css" />
         </put-list-attribute>
 	</definition>

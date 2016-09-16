@@ -118,6 +118,15 @@ public class ShiftReportController {
 		return "shiftReport";
 	}
 	
+	@RequestMapping("/deleteShiftReport")
+	public String deleteShiftReport(HttpServletRequest request, Model model) {
+		if (request.getParameter("id") != null && request.getParameter("id").length() > 0) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			service.delete(id);
+		}
+		return "shiftReport";
+	}
+	
 	private ShiftReportSearchCriteria getSearchCriteria(HttpServletRequest request) {
 		ShiftReportSearchCriteria criteria = new ShiftReportSearchCriteria();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

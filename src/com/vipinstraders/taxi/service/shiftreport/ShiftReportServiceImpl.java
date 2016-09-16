@@ -33,8 +33,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		dao.delete(id);
 	}
 
 	@Override
