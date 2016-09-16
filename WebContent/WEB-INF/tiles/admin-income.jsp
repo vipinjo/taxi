@@ -13,7 +13,7 @@
 					placeholder="Income Name" maxlength="100">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
             <label for="incomeDesc" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-8">
                 <textarea class="form-control" name="incomeDesc" id="incomeDesc" rows="4" maxlength="300"></textarea>

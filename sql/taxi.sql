@@ -28,3 +28,12 @@ create table shift_report (id int primary key auto_increment,
     total decimal(10, 2),
     foreign key (driver_id) references driver(id),
     foreign key (car_id) references car(id));  
+    
+CREATE TABLE transaction (id int primary key auto_increment,
+    transaction_date DATETIME,
+    income_type_id int,
+    expense_type_id int,
+    income decimal(10, 2),
+    expense decimal(10, 2),
+    meter_reading int,
+    description varchar(300));    
