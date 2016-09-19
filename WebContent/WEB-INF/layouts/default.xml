@@ -15,6 +15,7 @@
 		<put-list-attribute name="javascripts">
             <add-attribute value="js/bootstrap.min.js" />
             <add-attribute value="js/ie10-viewport-bug-workaround.js" />
+            <add-attribute value="js/moment.js" />
         </put-list-attribute>
         <put-list-attribute name="stylesheets">
             <add-attribute value="css/bootstrap.min.css" />
@@ -128,7 +129,7 @@
 		<put-attribute name="leftNavigationMenuItemName" value="viewExpense"></put-attribute>
 		<put-list-attribute name="javascripts" inherit="true">
 		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
-            <add-attribute value="js/shift-report.js" />
+            <add-attribute value="js/expense-report.js" />
         </put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
 		    <add-attribute value="css/jquery.datetimepicker.min.css" />

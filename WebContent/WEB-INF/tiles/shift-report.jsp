@@ -99,7 +99,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" id="editCarModalClose">Close</button>
+						data-dismiss="modal" id="shiftReportDetailsModalClose">Close</button>
 				</div>
 		</div>
 	</div>

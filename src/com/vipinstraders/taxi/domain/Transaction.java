@@ -2,16 +2,21 @@ package com.vipinstraders.taxi.domain;
 
 import java.util.Date;
 
-public class Expense {
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class Transaction {
 	
  	private int id;
  	private Date date;
- 	private IncomeType incomeType;
- 	private double amout;
+ 	private ExpenseType expenseType;
+ 	private double expenseAmount;
  	private int meterReading;
  	private String description;
  	
- 	public Expense() {
+ 	static Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").setPrettyPrinting().create();
+ 	
+ 	public Transaction() {
  		
 	}
 
@@ -31,20 +36,20 @@ public class Expense {
 		this.date = date;
 	}
 
-	public IncomeType getIncomeType() {
-		return incomeType;
+	public ExpenseType getExpenseType() {
+		return expenseType;
 	}
 
-	public void setIncomeType(IncomeType incomeType) {
-		this.incomeType = incomeType;
+	public void setExpenseType(ExpenseType expenseType) {
+		this.expenseType = expenseType;
 	}
 
-	public double getAmout() {
-		return amout;
+	public double getExpenseAmount() {
+		return expenseAmount;
 	}
 
-	public void setAmout(double amout) {
-		this.amout = amout;
+	public void setExpenseAmount(double expenseAmout) {
+		this.expenseAmount = expenseAmout;
 	}
 
 	public int getMeterReading() {
@@ -61,6 +66,11 @@ public class Expense {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Override
+	public String toString() {
+		return gson.toJson(this);
 	}
 
 }

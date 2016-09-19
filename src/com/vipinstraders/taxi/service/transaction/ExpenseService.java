@@ -2,20 +2,20 @@ package com.vipinstraders.taxi.service.transaction;
 
 import java.util.List;
 
-import com.vipinstraders.taxi.domain.Expense;
-import com.vipinstraders.taxi.object.criteria.ExpenseSearchCriteria;
+import com.vipinstraders.taxi.domain.Transaction;
+import com.vipinstraders.taxi.object.criteria.TransactionSearchCriteria;
 
 public interface ExpenseService {
 	
-	public void add(Expense expense);
+	public void add(Transaction expense);
 	
-	public void update(Expense expense);
+	public void update(Transaction expense);
 	
 	public void delete(int id);
 	
-	public List<Expense> getAllExpenses(ExpenseSearchCriteria searchCriteria);
+	public List<Transaction> getAllExpenses(TransactionSearchCriteria searchCriteria);
 	
-	public Expense getExpense(int id);
+	public Transaction getExpense(int id);
 	
 
 }

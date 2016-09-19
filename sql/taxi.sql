@@ -33,7 +33,9 @@ CREATE TABLE transaction (id int primary key auto_increment,
     transaction_date DATETIME,
     income_type_id int,
     expense_type_id int,
-    income decimal(10, 2),
-    expense decimal(10, 2),
+    income_amount decimal(10, 2),
+    expense_amount decimal(10, 2),
     meter_reading int,
-    description varchar(300));    
+    description varchar(300),
+	foreign key (income_type_id) references income_type(id),
+    foreign key (expense_type_id) references expense_type(id));

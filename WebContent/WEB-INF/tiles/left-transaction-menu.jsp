@@ -9,7 +9,7 @@
 		    </c:otherwise>
 		    </c:choose>>View Expenses</a>
     </li>
-	<li class="nav-item"><a href="addExpense"
+	<li class="nav-item"><a href="showAddExpensePage"
 		<c:choose>
 		    <c:when test="${leftNavigationMenuItemName == 'addExpense'}"> class="nav-link active" </c:when>
 		    <c:otherwise>

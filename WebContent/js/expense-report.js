@@ -24,40 +24,96 @@ jQuery(function() {
 				},
 				timepicker : false,
 			});
+	jQuery('#date').datetimepicker(
+			{
+				format : 'Y/m/d',
+				timepicker : false,
+			});
 });
 
-function showShiftReportDetais(id) {
-	$("#shiftReportDetailsModal").modal();
-	var data = $("#" + id +"").val()
-	var obj = JSON.parse(data);
-	$("#shiftReportDetailsTable").append("<tr> <td> Start Time </td> <td>" + obj.date  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Finish Time </td> <td>" + obj.finishDate  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Driver </td> <td>" + obj.driver.givenName + " " + obj.driver.familyName  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Car </td> <td>" + obj.car.rego +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Start Meter Reading </td> <td>" + obj.startMeterReading +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> End Meter Reading </td> <td>" + obj.endMeterReading +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Meter Revenue </td> <td>" + obj.meterRevenue  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Owner Revenue </td> <td>" + obj.ownerRevenue  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Owner Subsidy </td> <td>" + obj.ownerSubsidy  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Bailment Fee </td> <td>" + obj.bailmentFee  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Paper Voucher </td> <td>" + obj.paperVoucher  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Fuel Receipt </td> <td>" + obj.fuelReceipt  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Online Receipt </td> <td>" + obj.onlineReceipt  +"</td></tr>");
-	$("#shiftReportDetailsTable").append("<tr> <td> Total </td> <td>" + obj.total  +"</td></tr>");
-	$("#shiftReportDetailsModal").modal();
+function showExpenseDetails(id) {
+	clearTheErrorMessages();
+	setTheValuesInModal(id)
+	setDetailsPageReadOnly();
+	$("#expenseDetailsModalTitle").html("Expense Details");
+	$("#editExpenseButton").hide();
+	$("#expenseDetailsModal").modal();
 }
 
-function deleteShiftReport(id) {
+function editExpenses(id) {
+	clearTheErrorMessages();
+	setDetailsPageEditable();
+	setTheValuesInModal(id);
+	$("#expenseDetailsModalTitle").html("Update Expense Details");
+	$("#editExpenseButton").show();
+	$("#expenseDetailsModal").modal();
+}
+
+function setDetailsPageReadOnly() {
+	$("#date").prop('readonly', true);
+	$("#type").attr("disabled", true);
+	$("#amount").prop('readonly', true);
+	$("#meterReading").prop('readonly', true);
+	$("#description").prop('readonly', true);
+}
+
+function setDetailsPageEditable() {
+	$("#date").prop('readonly', false);
+	$("#type").attr("disabled", false);
+	$("#amount").prop('readonly', false);
+	$("#meterReading").prop('readonly', false);
+	$("#description").prop('readonly', false);
+}
+
+function setTheValuesInModal(id) {
+	var data = $("#" + id +"").val();
+	var obj = JSON.parse(data);
+	$("#id").val(obj.id);
+	$("#date").val(obj.date);
+	$('#type option[value=' + obj.expenseType.id +']').attr('selected','selected');
+	$("#amount").val(obj.expenseAmount);
+	$("#meterReading").val(obj.meterReading);
+	$("#description").val(obj.description);
+}
+
+$("#editExpenseButton").click(function() {
+	var errorMessage = "";
+
+	if ($("#date").val() == "") {
+		errorMessage = "date is empty</br>";
+	}
+
+	if ($("#amount").val() == "") {
+		errorMessage += "Please enter amount</br>";
+	}
+
+	if (errorMessage != "") {
+		$("#editExpenseAlert").html(errorMessage);
+		$("#editExpenseAlert").show();
+		return false;
+	}
+});
+
+function clearTheErrorMessages() {
+	$("#editExpenseAlert").html("");
+	$("#editExpenseAlert").hide();
+}
+
+function deleteExpenseReport(id) {
 	var data = $("#" + id + "").val()
 	var obj = JSON.parse(data);
-	var shouldDelete = confirm("You are about to delete shift resport : "
-			+ obj.date + " drove " + obj.driver.givenName + " "
-			+ obj.driver.familyName);
+	var shouldDelete = confirm("You are about to delete the expense on : "
+			+ obj.date + " on " + obj.expenseType.name + " for $"
+			+ obj.expenseAmount);
 	if (!shouldDelete)
 		return false;
-	$.get("deleteShiftReport?id=" + id, function(data) {
+
+	$.get("deleteExpense?id=" + id + "&searchCriteriaStartDate"
+			+ $("#searchCriteriaStartDate") + "&searchCriteriaEndDate"
+			+ $("#searchCriteriaEndDate"), function(data) {
 		location.reload();
 	});
+
 }
 
 
