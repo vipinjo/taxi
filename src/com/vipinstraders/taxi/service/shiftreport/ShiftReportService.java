@@ -3,6 +3,7 @@ package com.vipinstraders.taxi.service.shiftreport;
 import java.util.List;
 
 import com.vipinstraders.taxi.domain.ShiftReport;
+import com.vipinstraders.taxi.domain.ShiftReportDetails;
 import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 
 public interface ShiftReportService {
@@ -16,5 +17,7 @@ public interface ShiftReportService {
 	public List<ShiftReport> getShiftReport(ShiftReportSearchCriteria searchCriteria);
 	
 	public ShiftReport getShiftReport(int id);
+	
+	public ShiftReportDetails getShiftReportDetails(List<ShiftReport> shiftReportList);
 
 }

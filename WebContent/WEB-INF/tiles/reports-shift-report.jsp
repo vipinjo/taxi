@@ -2,7 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
-	<form action="searchShiftReport" id="searchShiftReportForm">
+	<form action="reportsShiftReports" id="searchShiftReportForm">
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Start Time</label>
 			<div class="col-sm-6">
@@ -31,6 +31,39 @@
 </div>
 
 <div>
+<c:if test="${fn:length(shiftReportList) gt 0}">
+<h5>Report Details</h5>
+<div class="col-sm-4" >
+<div class="card" >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span class="deailsHeading">Meter Revenue : </span> ${shiftReportDetails.totalMeterRevenue}</li>
+    <li class="list-group-item"><span class="deailsHeading">Owner Revenue : </span>${shiftReportDetails.totolOwnerRevenue}</li>
+    <li class="list-group-item"><span class="deailsHeading">Driver Revenue : </span>${shiftReportDetails.totalDriverRevenue}</li>
+  </ul>
+</div>
+</div>
+<div class="col-sm-4" >
+<div class="card" >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span class="deailsHeading">Paper Voucher : </span> ${shiftReportDetails.paperVoucher}</li>
+    <li class="list-group-item"><span class="deailsHeading">Online Receipts : </span>${shiftReportDetails.onlineReceipts}</li>
+    <li class="list-group-item"><span class="deailsHeading">Account Voucher : </span>${shiftReportDetails.accountVoucher}</li>
+  </ul>
+</div>
+</div>
+
+<div class="col-sm-4" >
+<div class="card" >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span class="deailsHeading">Fuel Receipts : </span> ${shiftReportDetails.fuelRecipts}</li>
+    <li class="list-group-item"><span class="deailsHeading">Total : </span>${shiftReportDetails.total}</li>
+  </ul>
+</div>
+</div>
+</c:if>
+</div>
+
+<div>
     <c:if test="${fn:length(shiftReportList) gt 0}">
     <table class="table">
 		<thead>
@@ -40,8 +73,9 @@
 				<th>Driver</th>
 				<th>Meter Revenue</th>
 				<th>Owner Revenue</th>
-				<th>Edit</th>
-				<th>Delete</th>
+				<th>Driver Revenue</th>
+				<th>paper Voucher</th>
+				<th>Online Receipt</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,11 +90,9 @@
 					<td>${tempShiftReport.driver.familyName}</td>	
 					<td>${tempShiftReport.meterRevenue}</td>
 					<td>${tempShiftReport.ownerRevenue}</td>
-					<td><a href="editShiftReport?id=${tempShiftReport.id}&startDate=<fmt:formatDate value='${searchCriteria.startDate}' pattern='yyyy/MM/dd'/>&endDate=<fmt:formatDate value='${searchCriteria.endDate}' pattern='yyyy/MM/dd'/>">Edit</a>
-					</td>
-					<td>
-					  <a href="#" onclick="deleteShiftReport('${tempShiftReport.id}')">Delete</a>
-					</td>
+					<td>${tempShiftReport.driverRevenue}</td>
+					<td>${tempShiftReport.paperVoucher}</td>
+					<td>${tempShiftReport.onlineReceipt}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
