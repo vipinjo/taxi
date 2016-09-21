@@ -152,5 +152,37 @@
             <add-attribute value="css/admin-car.css" />
         </put-list-attribute>
 	</definition>
+	
+	<definition name="reportsShiftReport" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Shift Report"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-reports-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/reports-shift-report.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="reports"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="shiftReport"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
+            <add-attribute value="js/shift-report.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+		    <add-attribute value="css/jquery.datetimepicker.min.css" />
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
+	
+	<definition name="performanceReport" extends="base">
+		<put-attribute name="title" value="Amalia Operations - Shift Report"></put-attribute>
+		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-reports-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/performance-report.jsp"></put-attribute>
+		<put-attribute name="topNavigationMenuItemName" value="reports"></put-attribute>
+		<put-attribute name="leftNavigationMenuItemName" value="performanceReport"></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
+            <add-attribute value="js/shift-report.js" />
+        </put-list-attribute>
+		<put-list-attribute name="stylesheets" inherit="true">
+		    <add-attribute value="css/jquery.datetimepicker.min.css" />
+            <add-attribute value="css/admin-car.css" />
+        </put-list-attribute>
+	</definition>
 
 </tiles-definitions>       

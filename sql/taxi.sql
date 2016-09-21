@@ -25,6 +25,7 @@ create table shift_report (id int primary key auto_increment,
     end_meter_reading int, meter_rev decimal(10,2), 
     owner_rev decimal(10,2), owner_subsidy decimal(10,2), bailment_fee decimal(10, 2),
     paper_voucher decimal(10, 2), fuel_receipt decimal(10, 2), online_receipt decimal(10, 2),
+    account_voucher decimal(10, 2), driver_revenue decimal(10,2), driver_subsidy decimal(10,2),
     total decimal(10, 2),
     foreign key (driver_id) references driver(id),
     foreign key (car_id) references car(id));  

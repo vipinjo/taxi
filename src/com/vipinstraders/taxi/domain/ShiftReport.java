@@ -19,6 +19,9 @@ public class ShiftReport {
 	private double paperVoucher;
 	private double fuelReceipt;
 	private double onlineReceipt;
+	private double accountVoucher;
+	private double driverRevenue;
+	private double driverSubsidy;
 	private double total;
 	private int startMeterReading;
 	private int endMeterReading;
@@ -122,6 +125,30 @@ public class ShiftReport {
 
 	public void setOnlineReceipt(double onlineReceipt) {
 		this.onlineReceipt = onlineReceipt;
+	}
+
+	public double getAccountVoucher() {
+		return accountVoucher;
+	}
+
+	public void setAccountVoucher(double accountVoucher) {
+		this.accountVoucher = accountVoucher;
+	}
+
+	public double getDriverRevenue() {
+		return driverRevenue;
+	}
+
+	public void setDriverRevenue(double driverRevenue) {
+		this.driverRevenue = driverRevenue;
+	}
+
+	public double getDriverSubsidy() {
+		return driverSubsidy;
+	}
+
+	public void setDriverSubsidy(double driverSubsidy) {
+		this.driverSubsidy = driverSubsidy;
 	}
 
 	public double getTotal() {

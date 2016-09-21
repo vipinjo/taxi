@@ -38,7 +38,7 @@
 		        class="nav-item"
 		    </c:otherwise>
 		    </c:choose>><a
-			class="nav-link" href="#">Reports</a>
+			class="nav-link" href="reports">Reports</a>
 		</li>
 		<li
 			<c:choose>

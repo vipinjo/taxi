@@ -20,10 +20,12 @@ $('#addShiftReportForm').mouseover(function(){
 
 function updateOwnerRevenue() {
 	if ($('#meterRevenue').val().length > 0 && $.isNumeric($('#meterRevenue').val())) {
-		$('#ownerRevenue').val(getOwnerRevenue($('#meterRevenue').val()))
+		$('#ownerRevenue').val(getOwnerRevenue($('#meterRevenue').val()));
+		$('#driverRevenue').val(getDriverRevenue($('#meterRevenue').val()))
 		return;
 	} else {
 		$('#ownerRevenue').val(parseFloat("0.00").toFixed(2));
+		$('#driverRevenue').val(parseFloat("0.00").toFixed(2))
 	}
 }
 
@@ -109,6 +111,11 @@ function isTotalAmountBreakUpCorrect() {
 function getOwnerRevenue(meterRevenue) {
 	var ownerRev = meterRevenue * 45 / 100;
 	return ownerRev.toFixed(2);
+}
+
+function getDriverRevenue(meterRevenue) {
+	var driverRev = meterRevenue - getOwnerRevenue(meterRevenue);
+	return driverRev.toFixed(2);
 }
 
 function isValidStartEndTime() {

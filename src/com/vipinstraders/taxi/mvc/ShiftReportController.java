@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -204,9 +203,23 @@ public class ShiftReportController {
 		if (request.getParameter("onlineReceipt") != null && request.getParameter("onlineReceipt").length() > 0) {
 			shiftReport.setOnlineReceipt(Double.parseDouble(request.getParameter("onlineReceipt")));
 		}
+		
+		if (request.getParameter("accountVoucher") != null && request.getParameter("accountVoucher").length() > 0) {
+			shiftReport.setAccountVoucher(Double.parseDouble(request.getParameter("accountVoucher")));
+		}
+		
 		if (request.getParameter("fuelReceipt") != null && request.getParameter("fuelReceipt").length() > 0) {
 			shiftReport.setFuelReceipt(Double.parseDouble(request.getParameter("fuelReceipt")));
 		}
+
+		if (request.getParameter("driverRevenue") != null && request.getParameter("driverRevenue").length() > 0) {
+			shiftReport.setDriverRevenue(Double.parseDouble(request.getParameter("driverRevenue")));
+		}
+
+		if (request.getParameter("driverSubsidy") != null && request.getParameter("driverSubsidy").length() > 0) {
+			shiftReport.setDriverSubsidy(Double.parseDouble(request.getParameter("driverSubsidy")));
+		}
+		
 		if (request.getParameter("total") != null) {
 			shiftReport.setTotal(Double.parseDouble(request.getParameter("total")));
 		}
@@ -245,20 +258,5 @@ public class ShiftReportController {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);
 		return formatter.format(date);
 	}
-	
-	private Date parseDate(String strDate) {
-		Date date = null;
-		if (strDate != null && strDate.length() > 0) {
-			try {
-				date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).parse(strDate);
-
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return date;
-	}
-	
 
 }

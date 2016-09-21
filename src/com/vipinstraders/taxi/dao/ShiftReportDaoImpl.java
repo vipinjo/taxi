@@ -42,7 +42,8 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
         .usingColumns("report_date", "finish_date", "car_id", "driver_id",
         		"start_meter_reading", "end_meter_reading", "meter_rev", 
         		"owner_rev", "owner_subsidy", "bailment_fee", "paper_voucher", 
-        		"fuel_receipt", "online_receipt", "total")
+        		"fuel_receipt", "online_receipt", "account_voucher", 
+        		"driver_revenue", "driver_subsidy", "total")
         .usingGeneratedKeyColumns("id");
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -59,6 +60,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
         parameters.put("paper_voucher", shiftReport.getPaperVoucher());
         parameters.put("fuel_receipt", shiftReport.getFuelReceipt());
         parameters.put("online_receipt",shiftReport.getOnlineReceipt());
+        parameters.put("account_voucher",shiftReport.getAccountVoucher());
+        parameters.put("driver_revenue",shiftReport.getDriverRevenue());
+        parameters.put("driver_subsidy",shiftReport.getDriverSubsidy());
         parameters.put("total", shiftReport.getTotal());
         insertShiftReport.executeAndReturnKey(parameters);
 		
@@ -78,13 +82,15 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				.append("car_id=?, driver_id=?, ")
 				.append("start_meter_reading=?, end_meter_reading=?, ")
 				.append("meter_rev=?, owner_rev=?, owner_subsidy=?, bailment_fee=?, ")
-				.append("paper_voucher=?, fuel_receipt=?, online_receipt=?, total=? WHERE id=?");
+				.append("paper_voucher=?, fuel_receipt=?, online_receipt=?, ")
+				.append("account_voucher=?, driver_revenue=?, driver_subsidy=?, total=? WHERE id=?");
 		
         jdbcTemplate.update(sql.toString(), new Object[]{shiftReport.getDate(), shiftReport.getFinishDate(),
         		shiftReport.getCar().getId(), shiftReport.getDriver().getId(),
         		shiftReport.getStartMeterReading(), shiftReport.getEndMeterReading(),
         		shiftReport.getMeterRevenue(), shiftReport.getOwnerRevenue(), shiftReport.getOwnerSubsidy(),
         		shiftReport.getBailmentFee(), shiftReport.getPaperVoucher(), shiftReport.getFuelReceipt(), shiftReport.getOnlineReceipt(),
+        		shiftReport.getAccountVoucher(), shiftReport.getDriverRevenue(), shiftReport.getDriverSubsidy(),
         		shiftReport.getTotal(), shiftReport.getId()});
 	}
 
@@ -104,7 +110,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				.append("driver.given_name as driver_given_name, driver.dc as driver_dc, driver.abn as driver_abn, ")
 				.append("start_meter_reading, end_meter_reading, ")
 				.append("meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
-				.append("paper_voucher, fuel_receipt, online_receipt, total FROM shift_report ")
+				.append("paper_voucher, fuel_receipt, online_receipt, ")
+				.append("account_voucher, driver_revenue, driver_subsidy, ")
+				.append("total FROM shift_report ")
 				.append("INNER JOIN car ON shift_report.car_id = car.id ")
 				.append("INNER JOIN driver ON shift_report.driver_id = driver.id ");
 		if (searchCriteria.getStartDate() != null && searchCriteria.getEndDate() == null) {
@@ -143,6 +151,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				shiftReport.setPaperVoucher(rs.getDouble("paper_voucher"));
 				shiftReport.setFuelReceipt(rs.getDouble("fuel_receipt"));
 				shiftReport.setOnlineReceipt(rs.getDouble("online_receipt"));
+				shiftReport.setAccountVoucher(rs.getDouble("account_voucher"));
+				shiftReport.setDriverRevenue(rs.getDouble("driver_revenue"));
+				shiftReport.setDriverSubsidy(rs.getDouble("driver_subsidy"));
 				shiftReport.setTotal(rs.getDouble("total"));
 				return shiftReport;
 			}
@@ -159,7 +170,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 				.append("driver.given_name as driver_given_name, driver.dc as driver_dc, driver.abn as driver_abn, ")
 				.append("start_meter_reading, end_meter_reading, ")
 				.append("meter_rev, owner_rev, owner_subsidy, bailment_fee, ")
-				.append("paper_voucher, fuel_receipt, online_receipt, total FROM shift_report ")
+				.append("paper_voucher, fuel_receipt, online_receipt, ")
+				.append("account_voucher, driver_revenue, driver_subsidy, ")
+				.append("total FROM shift_report ")
 				.append("INNER JOIN car ON shift_report.car_id = car.id ")
 				.append("INNER JOIN driver ON shift_report.driver_id = driver.id ")
 		        .append("WHERE shift_report.id=?");
@@ -192,6 +205,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 						shiftReport.setPaperVoucher(rs.getDouble("paper_voucher"));
 						shiftReport.setFuelReceipt(rs.getDouble("fuel_receipt"));
 						shiftReport.setOnlineReceipt(rs.getDouble("online_receipt"));
+						shiftReport.setAccountVoucher(rs.getDouble("account_voucher"));
+						shiftReport.setDriverRevenue(rs.getDouble("driver_revenue"));
+						shiftReport.setDriverSubsidy(rs.getDouble("driver_subsidy"));
 						shiftReport.setTotal(rs.getDouble("total"));
 						return shiftReport;
 					}

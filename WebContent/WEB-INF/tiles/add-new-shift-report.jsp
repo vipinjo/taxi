@@ -123,12 +123,45 @@
 		</div>
 		
 		<div class="form-group row">
+			<label for="accountVoucher" class="col-sm-2 col-form-label">Account Voucher</label>
+			<div class="col-sm-4">
+				<div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control" id="accountVoucher" name="accountVoucher" step="any" 
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.accountVoucher}">
+                </div>
+			</div>
+		</div>
+		
+		<div class="form-group row">
 			<label for="onlineReceipt" class="col-sm-2 col-form-label">Fuel Receipt</label>
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" id="fuelReceipt" name="fuelReceipt" step="any" 
                         min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.fuelReceipt}">
+                </div>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="driverRevenue" class="col-sm-2 col-form-label">Driver Revenue</label>
+			<div class="col-sm-4">
+				<div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control" id="driverRevenue" name="driverRevenue" step="any" 
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.driverRevenue}" readonly>
+                </div>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="driverSubsidy" class="col-sm-2 col-form-label">Driver Subsidy</label>
+			<div class="col-sm-4">
+				<div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control" id="driverSubsidy" name="driverSubsidy" step="any" 
+                        min="0" max="100000" aria-label="Amount (to the nearest dollar)" value="${shiftReport.driverSubsidy}">
                 </div>
 			</div>
 		</div>
