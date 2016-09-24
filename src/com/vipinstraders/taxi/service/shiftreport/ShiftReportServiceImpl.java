@@ -65,7 +65,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotalMeterRevenue(List<ShiftReport> shiftReportList) {
-		double totalMeterRevenue = 0;
+		double totalMeterRevenue =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalMeterRevenue += shiftReport.getMeterRevenue();
 		}
@@ -73,7 +73,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotalOwnerRevenue(List<ShiftReport> shiftReportList) {
-		double totalOwnerRevenue = 0;
+		double totalOwnerRevenue =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalOwnerRevenue += shiftReport.getOwnerRevenue();
 		}
@@ -81,7 +81,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotalPaperVoucher(List<ShiftReport> shiftReportList) {
-		double totalPaperVoucher = 0;
+		double totalPaperVoucher =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalPaperVoucher += shiftReport.getPaperVoucher();
 		}
@@ -89,7 +89,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateOnlineReceipts(List<ShiftReport> shiftReportList) {
-		double totalOnlineReceipt = 0;
+		double totalOnlineReceipt =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalOnlineReceipt += shiftReport.getOnlineReceipt();
 		}
@@ -97,7 +97,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculatFuelRecipts(List<ShiftReport> shiftReportList) {
-		double totalFuelReceipt = 0;
+		double totalFuelReceipt =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalFuelReceipt += shiftReport.getFuelReceipt();
 		}
@@ -105,7 +105,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotalAccountVoucher(List<ShiftReport> shiftReportList) {
-		double totalAccountVoucher = 0;
+		double totalAccountVoucher =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalAccountVoucher += shiftReport.getAccountVoucher();
 		}
@@ -113,7 +113,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotalDriverRevenue(List<ShiftReport> shiftReportList) {
-		double totalDriverRev = 0;
+		double totalDriverRev = 0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			totalDriverRev += shiftReport.getDriverRevenue();
 		}
@@ -121,7 +121,7 @@ public class ShiftReportServiceImpl implements ShiftReportService {
 	}
 	
 	private double calculateTotal(List<ShiftReport> shiftReportList) {
-		double total = 0;
+		double total =  0.00;
 		for (ShiftReport shiftReport : shiftReportList) {
 			total += shiftReport.getTotal();
 		}

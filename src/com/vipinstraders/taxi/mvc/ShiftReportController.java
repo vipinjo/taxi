@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +20,7 @@ import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 import com.vipinstraders.taxi.service.admin.CarService;
 import com.vipinstraders.taxi.service.admin.DriverService;
 import com.vipinstraders.taxi.service.shiftreport.ShiftReportService;
+import com.vipinstraders.taxi.util.ReportUtils;
 
 @Controller
 public class ShiftReportController {
@@ -97,7 +97,7 @@ public class ShiftReportController {
 		    model.addAttribute("shiftReportList", shiftReportList);
 		}
 		model.addAttribute("searchCriteria", searchCriteria);
-		model.addAttribute("displayText", getDisplayTextBasedOnShiftReport(searchCriteria, shiftReportList));
+		model.addAttribute("displayText", ReportUtils.getDisplayTextBasedOnShiftReport(searchCriteria, "Shift Report",shiftReportList));
 		
 		return "shiftReport";
 		
@@ -113,7 +113,7 @@ public class ShiftReportController {
 		    model.addAttribute("shiftReportList", shiftReportList);
 		}
 		model.addAttribute("searchCriteria", searchCriteria);
-		model.addAttribute("displayText", getDisplayTextBasedOnShiftReport(searchCriteria, shiftReportList));
+		model.addAttribute("displayText", ReportUtils.getDisplayTextBasedOnShiftReport(searchCriteria, "Shift Report", shiftReportList));
 		return "shiftReport";
 	}
 	
@@ -233,30 +233,30 @@ public class ShiftReportController {
 		return false;
 	}
 	
-	private String getDisplayTextBasedOnShiftReport(ShiftReportSearchCriteria criteria,
-			List<ShiftReport> shiftReportList) {
-		StringBuilder resultText = new StringBuilder("");
-
-		if (shiftReportList != null && shiftReportList.isEmpty()) {
-			resultText.append("No results found ");
-		} else if (shiftReportList != null && !shiftReportList.isEmpty()) {
-			resultText.append("Search results ");
-		}
-		if (criteria.getStartDate() != null && criteria.getEndDate() == null) {
-			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" ");
-		} else if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
-			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" to ")
-					.append(formatDate(criteria.getEndDate(), "EEE, MMM d, yyyy"));
-		}
-
-		return resultText.toString();
-	}
-	
-	private String formatDate(Date date, String format) {
-		if (date == null)
-			return "";
-		SimpleDateFormat formatter = new SimpleDateFormat(format);
-		return formatter.format(date);
-	}
+//	private String getDisplayTextBasedOnShiftReport(ShiftReportSearchCriteria criteria,
+//			List<ShiftReport> shiftReportList) {
+//		StringBuilder resultText = new StringBuilder("");
+//
+//		if (shiftReportList != null && shiftReportList.isEmpty()) {
+//			resultText.append("No results found ");
+//		} else if (shiftReportList != null && !shiftReportList.isEmpty()) {
+//			resultText.append("Search results ");
+//		}
+//		if (criteria.getStartDate() != null && criteria.getEndDate() == null) {
+//			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" ");
+//		} else if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
+//			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" to ")
+//					.append(formatDate(criteria.getEndDate(), "EEE, MMM d, yyyy"));
+//		}
+//
+//		return resultText.toString();
+//	}
+//	
+//	private String formatDate(Date date, String format) {
+//		if (date == null)
+//			return "";
+//		SimpleDateFormat formatter = new SimpleDateFormat(format);
+//		return formatter.format(date);
+//	}
 
 }

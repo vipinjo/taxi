@@ -3,7 +3,7 @@ package com.vipinstraders.taxi.domain;
 public class ShiftReportDetails {
 	
 	private double totalMeterRevenue;
-	private double totolOwnerRevenue;
+	private double totalOwnerRevenue;
 	private double totalDriverRevenue;
 	private double paperVoucher;
 	private double onlineReceipts;
@@ -12,6 +12,14 @@ public class ShiftReportDetails {
 	private double total;
 	
 	public ShiftReportDetails() {
+		this.totalMeterRevenue = 0.00; 
+		this.totalOwnerRevenue = 0.00; 
+		this.totalDriverRevenue = 0.00;
+		this.paperVoucher = 0.00;      
+		this.onlineReceipts = 0.00;    
+		this.accountVoucher = 0.00;    
+		this.fuelRecipts = 0.00;       
+		this.total = 0.00;             
 		
 	}
 
@@ -23,12 +31,12 @@ public class ShiftReportDetails {
 		this.totalMeterRevenue = totalMeterRevenue;
 	}
 
-	public double getTotolOwnerRevenue() {
-		return totolOwnerRevenue;
+	public double getTotalOwnerRevenue() {
+		return totalOwnerRevenue;
 	}
 
-	public void setTotolOwnerRevenue(double totolOwnerRevenue) {
-		this.totolOwnerRevenue = totolOwnerRevenue;
+	public void setTotolOwnerRevenue(double totalOwnerRevenue) {
+		this.totalOwnerRevenue = totalOwnerRevenue;
 	}
 
 	public double getTotalDriverRevenue() {

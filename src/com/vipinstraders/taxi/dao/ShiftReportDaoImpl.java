@@ -122,7 +122,10 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 			Date startDate = new Date(searchCriteria.getStartDate().getTime());
 			Date finishDate = new Date(searchCriteria.getEndDate().getTime());
 			query.append("where report_date BETWEEN ").append("'" + startDate + " 00:00:00'").append(" AND ")
-					.append("'" + finishDate + " 23:59:59'");
+					.append("'" + finishDate + " 23:59:59' ");
+		}
+		if (searchCriteria.getDriverId() >= 0) {
+            query.append("AND shift_report.driver_id ="+ searchCriteria.getDriverId());
 		}
 		List<ShiftReport> shiftReports = this.jdbcTemplate.query(query.toString(), new RowMapper<ShiftReport>() {
 			public ShiftReport mapRow(ResultSet rs, int rowNum) throws SQLException {

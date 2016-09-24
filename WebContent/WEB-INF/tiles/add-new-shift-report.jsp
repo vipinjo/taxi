@@ -11,13 +11,13 @@
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Start Time</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="startDate" name="startDate" value="<fmt:formatDate value='${shiftReport.date}' pattern='yyyy/MM/dd HH:mm'/>">
+				<input type="text" class="form-control" id="startDate" name="startDate" autocomplete="off" value="<fmt:formatDate value='${shiftReport.date}' pattern='yyyy/MM/dd HH:mm'/>">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Finish Time</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="finishDate" name="finishDate" value="<fmt:formatDate value='${shiftReport.finishDate}' pattern='yyyy/MM/dd HH:mm'/>">
+				<input type="text" class="form-control" id="finishDate" name="finishDate"  autocomplete="off" value="<fmt:formatDate value='${shiftReport.finishDate}' pattern='yyyy/MM/dd HH:mm'/>">
 			</div>
 		</div>
 		<div class="form-group row">

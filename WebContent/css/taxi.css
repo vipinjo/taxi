@@ -13,3 +13,15 @@
 #header-nav-bar {
 	font-color: #3B5998;
 }
+
+.clearFloat {
+	 clear: both;
+}
+
+#printButton {
+	float: right;
+}
+
+.extraSpace {
+	padding: 10px 10px 10px 10px;
+}
