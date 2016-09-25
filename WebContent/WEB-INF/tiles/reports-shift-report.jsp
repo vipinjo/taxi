@@ -52,11 +52,11 @@
 		<div class="col-sm-4">
 			<div class="card">
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item"><span class="deailsHeading">Meter
+					<li class="list-group-item"><span class="detailsHeading">Meter
 							Revenue : </span> ${shiftReportDetails.totalMeterRevenue}</li>
-					<li class="list-group-item"><span class="deailsHeading">Owner
+					<li class="list-group-item"><span class="detailsHeading">Owner
 							Revenue : </span>${shiftReportDetails.totalOwnerRevenue}</li>
-					<li class="list-group-item"><span class="deailsHeading">Driver
+					<li class="list-group-item"><span class="detailsHeading">Driver
 							Revenue : </span>${shiftReportDetails.totalDriverRevenue}</li>
 				</ul>
 			</div>
@@ -64,11 +64,11 @@
 		<div class="col-sm-4">
 			<div class="card">
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item"><span class="deailsHeading">Paper
+					<li class="list-group-item"><span class="detailsHeading">Paper
 							Voucher : </span> ${shiftReportDetails.paperVoucher}</li>
-					<li class="list-group-item"><span class="deailsHeading">Online
+					<li class="list-group-item"><span class="detailsHeading">Online
 							Receipts : </span>${shiftReportDetails.onlineReceipts}</li>
-					<li class="list-group-item"><span class="deailsHeading">Account
+					<li class="list-group-item"><span class="detailsHeading">Account
 							Voucher : </span>${shiftReportDetails.accountVoucher}</li>
 				</ul>
 			</div>
@@ -77,9 +77,9 @@
 		<div class="col-sm-4">
 			<div class="card">
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item"><span class="deailsHeading">Fuel
+					<li class="list-group-item"><span class="detailsHeading">Fuel
 							Receipts : </span> ${shiftReportDetails.fuelRecipts}</li>
-					<li class="list-group-item"><span class="deailsHeading">Total
+					<li class="list-group-item"><span class="detailsHeading">Total
 							: </span>${shiftReportDetails.total}</li>
 				</ul>
 			</div>
@@ -134,7 +134,6 @@
         <nav aria-label="Page navigation">
           <ul class="pagination">
            <c:if test="${currentPage != 1}">
-             <!--  <td><a href="employee.do?page=${currentPage - 1}">Previous</a></td>  -->
             <li class="page-item">
               <a class="page-link" href="reportsShiftReports?startDate=<fmt:formatDate value='${searchCriteria.startDate}' pattern='yyyy/MM/dd'/>&endDate=<fmt:formatDate value='${searchCriteria.endDate}' pattern='yyyy/MM/dd'/>&driver=${searchCriteria.driverId}&page=${currentPage - 1}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -153,7 +152,6 @@
                 </c:choose>
             </c:forEach>
             <c:if test="${currentPage lt noOfPages}">
-            <!--   <td><a href="employee.do?page=${currentPage + 1}">Next</a></td> -->
             <li class="page-item">
               <a class="page-link" href="reportsShiftReports?startDate=<fmt:formatDate value='${searchCriteria.startDate}' pattern='yyyy/MM/dd'/>&endDate=<fmt:formatDate value='${searchCriteria.endDate}' pattern='yyyy/MM/dd'/>&driver=${searchCriteria.driverId}&page=${currentPage + 1}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -198,6 +196,9 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+			<a id="detailsPrintButton"
+				href=""
+				class="btn btn-outline-primary">Print</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal"
 					id="shiftReportDetailsModalClose">Close</button>
 			</div>

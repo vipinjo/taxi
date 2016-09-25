@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.vipinstraders.taxi.domain.Performance;
 import com.vipinstraders.taxi.domain.ShiftReport;
+import com.vipinstraders.taxi.object.criteria.PerformanceSearchCriteria;
 import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 
 public class ReportUtils {
@@ -20,6 +22,32 @@ public class ReportUtils {
 		if (shiftReportList != null && shiftReportList.isEmpty()) {
 			resultText.append("No results found ");
 		} else if (shiftReportList != null && !shiftReportList.isEmpty()) {
+			if (reportName != null && !reportName.isEmpty()) {
+				resultText.append(reportName ).append(" ");
+			} else {
+			    resultText.append("Search results ");
+			}
+		}
+		if (criteria.getStartDate() != null && criteria.getEndDate() == null) {
+			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" ");
+		} else if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
+			resultText.append("from ").append(formatDate(criteria.getStartDate(), "EEE, MMM d, yyyy")).append(" to ")
+					.append(formatDate(criteria.getEndDate(), "EEE, MMM d, yyyy"));
+		}
+
+		return resultText.toString();
+	}
+	
+	public static String getDisplayTextBasedOnPerformanceReport(PerformanceSearchCriteria criteria, String reportName,
+			List<Performance> performanceReportList) {
+		StringBuilder resultText = new StringBuilder("");
+		
+		if (performanceReportList == null)
+			return resultText.append("No Results Found").toString();
+
+		if (performanceReportList != null && performanceReportList.isEmpty()) {
+			resultText.append("No results found ");
+		} else if (performanceReportList != null && !performanceReportList.isEmpty()) {
 			if (reportName != null && !reportName.isEmpty()) {
 				resultText.append(reportName ).append(" ");
 			} else {

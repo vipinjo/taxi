@@ -39,6 +39,29 @@ $("#searchShiftReport").click(function(){
 	}
 });
 
+function showShiftReportDetais(id) {
+	$("#shiftReportDetailsModal").modal();
+	var data = $("#" + id +"").val()
+	var obj = JSON.parse(data);
+	$("#shiftReportDetailsTable").append("<tr> <td> Start Time </td> <td>" + obj.date  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Finish Time </td> <td>" + obj.finishDate  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Driver </td> <td>" + obj.driver.givenName + " " + obj.driver.familyName  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Car </td> <td>" + obj.car.rego +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Start Meter Reading </td> <td>" + obj.startMeterReading +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> End Meter Reading </td> <td>" + obj.endMeterReading +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Meter Revenue </td> <td>" + obj.meterRevenue  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Owner Revenue </td> <td>" + obj.ownerRevenue  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Owner Subsidy </td> <td>" + obj.ownerSubsidy  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Bailment Fee </td> <td>" + obj.bailmentFee  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Paper Voucher </td> <td>" + obj.paperVoucher  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Fuel Receipt </td> <td>" + obj.fuelReceipt  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Online Receipt </td> <td>" + obj.onlineReceipt  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Account Voucher </td> <td>" + obj.accountVoucher  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Total </td> <td>" + obj.total  +"</td></tr>");
+	$("#detailsPrintButton").attr("href", "downloadShiftReporDetails?id=" + obj.id);
+	$("#shiftReportDetailsModal").modal();
+}
+
 
 
 

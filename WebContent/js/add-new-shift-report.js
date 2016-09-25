@@ -49,8 +49,12 @@ function updateTotal() {
 			&& parseFloat($('#bailmentFee').val()) > 0) {
         
 		if (isTotalAmountBreakUpCorrect()) {
-			 var bailmentFee = parseFloat($('#bailmentFee').val()).toFixed(2);
-			 $('#total').val(bailmentFee); 
+			var total = parseFloat($('#bailmentFee').val()).toFixed(2);
+			if( $('#fuelReceipt').val().length > 0) {
+				total = (total - parseFloat($('#fuelReceipt').val()).toFixed(2));
+			}
+			 
+			 $('#total').val(total); 
 		}
 	}
 

@@ -14,5 +14,7 @@ public interface PrintService {
 			List<ShiftReport> shiftReportList, ServletOutputStream out);
 
 	public void printPerformanceReport(ServletOutputStream out);
+	
+	public void printShiftReportDetails(ShiftReport shiftReport, ServletOutputStream out);
 
 }

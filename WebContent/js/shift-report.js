@@ -43,6 +43,7 @@ function showShiftReportDetais(id) {
 	$("#shiftReportDetailsTable").append("<tr> <td> Paper Voucher </td> <td>" + obj.paperVoucher  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Fuel Receipt </td> <td>" + obj.fuelReceipt  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Online Receipt </td> <td>" + obj.onlineReceipt  +"</td></tr>");
+	$("#shiftReportDetailsTable").append("<tr> <td> Account Voucher </td> <td>" + obj.accountVoucher  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Total </td> <td>" + obj.total  +"</td></tr>");
 	$("#shiftReportDetailsModal").modal();
 }

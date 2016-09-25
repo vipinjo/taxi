@@ -68,6 +68,28 @@ public class PrintServiceImpl implements PrintService {
 	public void printPerformanceReport(ServletOutputStream out) {
 
 	}
+	
+	@Override
+	public void printShiftReportDetails(ShiftReport shiftReport, ServletOutputStream out) {
+		Document document = new Document();
+
+		try {
+
+			PdfWriter.getInstance(document, out);
+			document.open();
+			createPageHeader(document);
+			document.add(getShiftReportEntryDetails(shiftReport));
+			document.add(new Paragraph(EMPTY_LINE));
+			document.close(); // no need to close PDFwriter?
+
+			out.flush();
+			out.close();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private void createPageHeader(Document document) throws DocumentException {
 		Font font1 = new Font(Font.FontFamily.HELVETICA, 25, Font.BOLD);
@@ -165,11 +187,30 @@ public class PrintServiceImpl implements PrintService {
 		table.addCell(cell2);
 	}
 	
-	private void createShiftReportDetailsHeader(PdfPTable table) {
-		PdfPCell cell1 = new PdfPCell(new Paragraph("Details"));
-		PdfPCell cell2 = new PdfPCell(new Paragraph("Value"));
-		table.addCell(cell1);
-		table.addCell(cell2);
+	private PdfPTable getShiftReportEntryDetails(ShiftReport shiftReport) {
+		PdfPTable table = new PdfPTable(2);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		addShiftReportDetailsRowToTable(table, "Date", format.format(shiftReport.getDate()));
+		addShiftReportDetailsRowToTable(table, "Finish Date", format.format(shiftReport.getFinishDate()));
+		addShiftReportDetailsRowToTable(table, "Driver", shiftReport.getDriver().getFamilyName() + " " + shiftReport.getDriver().getGivenName());
+		addShiftReportDetailsRowToTable(table, "Car", shiftReport.getCar().getRego());
+		addShiftReportDetailsRowToTable(table, "Start Meter Reading", Integer.toString(shiftReport.getStartMeterReading()));
+		addShiftReportDetailsRowToTable(table, "End Meter Reading", Integer.toString(shiftReport.getEndMeterReading()));
+		addShiftReportDetailsRowToTable(table, "Meter Revenue", Double.toString(shiftReport.getMeterRevenue()));
+		addShiftReportDetailsRowToTable(table, "Driver Revenue", Double.toString(shiftReport.getDriverRevenue()));
+		addShiftReportDetailsRowToTable(table, "Driver Subsidy", Double.toString(shiftReport.getDriverSubsidy()));
+		addShiftReportDetailsRowToTable(table, "Owner Revenue", Double.toString(shiftReport.getOwnerRevenue()));
+		addShiftReportDetailsRowToTable(table, "Owner Subsidy", Double.toString(shiftReport.getOwnerSubsidy()));
+		addShiftReportDetailsRowToTable(table, "Online Receipt", Double.toString(shiftReport.getOnlineReceipt()));
+		addShiftReportDetailsRowToTable(table, "Paper Voucher", Double.toString(shiftReport.getPaperVoucher()));
+		addShiftReportDetailsRowToTable(table, "Account Voucher", Double.toString(shiftReport.getAccountVoucher()));
+		addShiftReportDetailsRowToTable(table, "Bailment Fee", Double.toString(shiftReport.getBailmentFee()));
+		addShiftReportDetailsRowToTable(table, "Fuel Receipt", Double.toString(shiftReport.getFuelReceipt()));
+		addShiftReportDetailsRowToTable(table, "Total", Double.toString(shiftReport.getTotal()));
+		
+		return table;
+		
 	}
 
 }
