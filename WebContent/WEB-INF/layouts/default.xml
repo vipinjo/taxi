@@ -13,6 +13,8 @@
 		<put-attribute name="topNavigationMenuItemName" value="home"></put-attribute>
 		<put-attribute name="leftNavigationMenuItemName" value=""></put-attribute>
 		<put-list-attribute name="javascripts">
+		    <add-attribute value="js/jquery.min.js" />
+		    <add-attribute value="js/tether.min.js" />
             <add-attribute value="js/bootstrap.min.js" />
             <add-attribute value="js/ie10-viewport-bug-workaround.js" />
         </put-list-attribute>

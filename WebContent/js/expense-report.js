@@ -31,6 +31,19 @@ jQuery(function() {
 			});
 });
 
+$("#searchExpense").click(function(){
+	$("#errorAlert").hide();
+	var errorMessage = "";
+	if ($("#startDate").val() == 0 ) {
+		errorMessage += "Please enter start date";
+	}
+	if (errorMessage != "") {
+		$("#errorAlert").html(errorMessage);
+		$("#errorAlert").show();
+		return false;
+	}
+});
+
 function showExpenseDetails(id) {
 	clearTheErrorMessages();
 	setTheValuesInModal(id)

@@ -127,6 +127,9 @@ public class ShiftReportDaoImpl implements ShiftReportDao {
 		if (searchCriteria.getDriverId() >= 0) {
             query.append("AND shift_report.driver_id ="+ searchCriteria.getDriverId());
 		}
+		
+		query.append(" ORDER BY report_date");
+		
 		List<ShiftReport> shiftReports = this.jdbcTemplate.query(query.toString(), new RowMapper<ShiftReport>() {
 			public ShiftReport mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ShiftReport shiftReport = new ShiftReport();

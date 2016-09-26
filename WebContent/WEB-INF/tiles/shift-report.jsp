@@ -2,6 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
+   <div class="alert alert-danger errAlert" role="alert" id="errorAlert"></div> 
 	<form action="searchShiftReport" id="searchShiftReportForm">
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Start Time</label>
@@ -20,7 +21,7 @@
 		
 		<div class="form-group row">
 			<div class="offset-sm-2 col-sm-8">
-				<button type="submit" id="saveShiftReport" class="btn btn-primary">Search</button>
+				<button type="submit" id="searchShiftReport" class="btn btn-primary">Search</button>
 			</div>
 		</div>
 	</form>
