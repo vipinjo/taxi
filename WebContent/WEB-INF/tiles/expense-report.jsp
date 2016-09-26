@@ -7,14 +7,14 @@
 			<label for="startDate" class="col-sm-2 col-form-label">Start Time</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="startDate"
-					name="startDate">
+					name="startDate" autocomplete="off">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">End Time</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="endDate"
-					name="endDate">
+					name="endDate" autocomplete="off">
 			</div>
 		</div>
 		

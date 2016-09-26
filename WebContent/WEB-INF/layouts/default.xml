@@ -8,14 +8,13 @@
 		<put-attribute name="title" value="Amalia Operations"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"></put-attribute>
 		<put-attribute name="leftMenu" value="/WEB-INF/tiles/left-menu.jsp"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/tiles/main-menu.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/landing-page.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
 		<put-attribute name="topNavigationMenuItemName" value="home"></put-attribute>
 		<put-attribute name="leftNavigationMenuItemName" value=""></put-attribute>
 		<put-list-attribute name="javascripts">
             <add-attribute value="js/bootstrap.min.js" />
             <add-attribute value="js/ie10-viewport-bug-workaround.js" />
-            <add-attribute value="js/moment.js" />
         </put-list-attribute>
         <put-list-attribute name="stylesheets">
             <add-attribute value="css/bootstrap.min.css" />
@@ -31,6 +30,10 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"></put-attribute>
 		<put-attribute name="topNavigationMenuItemName" value="home"></put-attribute>
 		<put-attribute name="leftNavigationMenuItemName" value=""></put-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+		    <add-attribute value="js/loader.js" /> 
+            <add-attribute value="js/landing-page.js" />
+        </put-list-attribute>
 	</definition>
 	
 	<definition name="admin" extends="base">
@@ -177,7 +180,7 @@
 		<put-attribute name="leftNavigationMenuItemName" value="performanceReport"></put-attribute>
 		<put-list-attribute name="javascripts" inherit="true">
 		    <add-attribute value="js/jquery.datetimepicker.full.min.js" />
-            <add-attribute value="js/shift-report.js" />
+            <add-attribute value="js/reports-performance-report.js" />
         </put-list-attribute>
 		<put-list-attribute name="stylesheets" inherit="true">
 		    <add-attribute value="css/jquery.datetimepicker.min.css" />

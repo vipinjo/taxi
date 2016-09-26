@@ -1,7 +1,16 @@
+<div class="wrap">
+    <div class="main"></div>
+</div>
 <div id="footer">
 	<div class="row">
-		<h2>Amalia Operations</h2>
-		<p class="lead">Really, why should I download this app?</p>
+	   <div id="footerText">
+		<h5>Amalia Operations</h5>
+		<address>
+		    3 Coal court, Epsom<br>
+		    Victoria 3550<br>
+		    ABN: 14613714159
+		</address>
+		</div>
 	</div>
 </div>
 

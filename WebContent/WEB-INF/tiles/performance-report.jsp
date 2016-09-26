@@ -2,25 +2,26 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div>
+    <div class="alert alert-danger errAlert" role="alert" id="errorAlert"></div>
 	<form action="reportsPerformanceReports" id="searchPerformanceReportForm">
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Start Time</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="startDate"
-					name="startDate">
+					name="startDate" autocomplete="off">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">End Time</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" id="endDate"
-					name="endDate">
+					name="endDate" autocomplete="off">
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<div class="offset-sm-2 col-sm-8">
-				<button type="submit" id="saveShiftReport" class="btn btn-primary">Search</button>
+				<button type="submit" id="searchPerformanceReport" class="btn btn-primary">Search</button>
 			</div>
 		</div>
 	</form>
@@ -65,6 +66,13 @@
 
 <div>
     <c:if test="${fn:length(performanceReportList) gt 0}">
+    <div class="clearFloat"></div>
+		<div id="printButton">
+			<a
+				href="downloadPerformanceReport?startDate=<fmt:formatDate value='${searchCriteria.startDate}' pattern='yyyy/MM/dd'/>&endDate=<fmt:formatDate value='${searchCriteria.endDate}' pattern='yyyy/MM/dd'/>"
+				class="btn btn-outline-primary">Print</a>
+		</div>
+		<div class="clearFloat extraSpace"></div>
     <table class="table">
 		<thead>
 			<tr>
@@ -76,7 +84,6 @@
 				<th>Fuel Cost</th>
 				<th>Maintenance Type</th>
 				<th>Maintenance Cost</th>
-				<th>Total</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -87,14 +94,13 @@
 				<tr>
 					<td>${count}</td>
 					<td><a href=#
-						onclick="showShiftReportDetais('${tempPerformance.id}')"><fmt:formatDate value='${tempPerformance.date}' pattern='dd/MM/yyyy HH:mm'/></a></td>
+						onclick="showPerformanceReportDetais('${tempPerformance.id}')"><fmt:formatDate value='${tempPerformance.date}' pattern='dd/MM/yyyy HH:mm'/></a></td>
 					<td>${tempPerformance.driverName}</td>	
 					<td>${tempPerformance.driverFees}</td>
 					<td>${tempPerformance.ownerIncome}</td>
 					<td>${tempPerformance.fuelCost}</td>
 					<td>${tempPerformance.maintanenceType}</td>
 					<td>${tempPerformance.maintanenceCost}</td>
-					<td>${tempPerformance.total}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -135,7 +141,7 @@
 </div>	
 
 <!-- Modal: This model displays is the details in a pop up -->
-<div class="modal fade" id="shiftReportDetailsModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="performanceReportDetailsModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -144,11 +150,10 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="shiftReportDetailsModal">Shift Report Details</h4>
+				<h4 class="modal-title" id="performanceReportDetailsModalTitle">Performance Report Details</h4>
 			</div>
-				<input type="hidden" name="carId" id="carId" value="">
 				<div class="modal-body">
-					<div id="shiftReportDetails"> 
+					<div id="performanceReportDetails"> 
 					  <table class="table table-striped">
                        <thead>
                          <tr>
@@ -156,7 +161,7 @@
                            <th>Value</th>
                          </tr>
                        </thead>
-                       <tbody id="shiftReportDetailsTable">
+                       <tbody id="performanceReportDetailsTable">
                          
                        </tbody>
                      </table>

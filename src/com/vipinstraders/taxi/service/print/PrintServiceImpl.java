@@ -18,10 +18,14 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.vipinstraders.taxi.domain.Performance;
+import com.vipinstraders.taxi.domain.PerformanceConsidated;
 import com.vipinstraders.taxi.domain.ShiftReport;
 import com.vipinstraders.taxi.domain.ShiftReportDetails;
+import com.vipinstraders.taxi.object.criteria.PerformanceSearchCriteria;
 import com.vipinstraders.taxi.object.criteria.ShiftReportSearchCriteria;
 import com.vipinstraders.taxi.util.ReportUtils;
+import com.vipinstraders.taxi.util.TaxiUtils;
 
 @Component
 public class PrintServiceImpl implements PrintService {
@@ -65,7 +69,27 @@ public class PrintServiceImpl implements PrintService {
 	}
 
 	@Override
-	public void printPerformanceReport(ServletOutputStream out) {
+	public void printPerformanceReport(ServletOutputStream out, PerformanceSearchCriteria searchCriteria,
+			List<Performance> performaceDetailsList, PerformanceConsidated performanceConsolidatedDetails) {
+		Document document = new Document();
+
+		try {
+			PdfWriter.getInstance(document, out);
+			document.open();
+			createPageHeader(document);
+			addPerformanceReportHeader(document, searchCriteria, performaceDetailsList);
+			document.add(getPerformanceReportDetails(performanceConsolidatedDetails));
+			document.add(new Paragraph(EMPTY_LINE));
+			document.add(getPerformanceReportTable(performaceDetailsList));
+			document.close(); // no need to close PDFwriter?
+
+			out.flush();
+			out.close();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
@@ -112,7 +136,6 @@ public class PrintServiceImpl implements PrintService {
 	private void addShiftReportHeader(Document document, ShiftReportSearchCriteria searchCriteria,
 			List<ShiftReport> shiftReportList) throws DocumentException {
 		Font font1 = new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD);
-		ReportUtils.getDisplayTextBasedOnShiftReport(searchCriteria, "Shift Report", shiftReportList);
 		Chunk reportHeaderChunk = new Chunk(
 				ReportUtils.getDisplayTextBasedOnShiftReport(searchCriteria, "Shift Report", shiftReportList), font1);
 		Paragraph headerP = new Paragraph(reportHeaderChunk);
@@ -210,7 +233,70 @@ public class PrintServiceImpl implements PrintService {
 		addShiftReportDetailsRowToTable(table, "Total", Double.toString(shiftReport.getTotal()));
 		
 		return table;
-		
+	}
+	
+	private void addPerformanceReportHeader(Document document, PerformanceSearchCriteria searchCriteria,
+			List<Performance> performaceDetailsList) throws DocumentException {
+		Font font1 = new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD);
+		Chunk reportHeaderChunk = new Chunk(
+				ReportUtils.getDisplayTextBasedOnPerformanceReport(searchCriteria, "Performance Report", performaceDetailsList), font1);
+		Paragraph headerP = new Paragraph(reportHeaderChunk);
+		headerP.setAlignment(Element.ALIGN_CENTER);
+		document.add(headerP);
+		document.add(new Paragraph(EMPTY_LINE));
+	}
+	
+	private PdfPTable getPerformanceReportDetails(PerformanceConsidated performanceConsidated) {
+		PdfPTable table = new PdfPTable(2);
+		addShiftReportDetailsRowToTable(table, "Meter Revenue", Double.toString(TaxiUtils.round(performanceConsidated.getMeterRevenue(), 2)));
+		addShiftReportDetailsRowToTable(table, "Owner Income", Double.toString(TaxiUtils.round(performanceConsidated.getOwnerIncome(), 2)));
+		addShiftReportDetailsRowToTable(table, "Driver Fees", Double.toString(TaxiUtils.round(performanceConsidated.getDriverFees(), 2)));
+		addShiftReportDetailsRowToTable(table, "Fuel Cost", Double.toString(TaxiUtils.round(performanceConsidated.getFuelCost(), 2)));
+		addShiftReportDetailsRowToTable(table, "Maintenance Cost", Double.toString(TaxiUtils.round(performanceConsidated.getMaintanenceCost(), 2)));
+		addShiftReportDetailsRowToTable(table, "Earnings", Double.toString(TaxiUtils.round(performanceConsidated.getTotalEarnings(), 2)));
+		return table;
+	}
+	
+	private PdfPTable getPerformanceReportTable(List<Performance> performaceDetailsList) {
+		PdfPTable table = new PdfPTable(7);
+		addPerformanceReportTableHeader(table);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		for (Performance performance : performaceDetailsList) {
+			PdfPCell cellDate = new PdfPCell(new Paragraph(format.format(performance.getDate())));
+			PdfPCell cell2 = new PdfPCell(new Paragraph(performance.getDriverName()));
+			PdfPCell cell3 = new PdfPCell(new Paragraph(Double.toString(performance.getDriverFees())));
+			PdfPCell cell4 = new PdfPCell(new Paragraph(Double.toString(performance.getOwnerIncome())));
+			PdfPCell cell5 = new PdfPCell(new Paragraph(Double.toString(performance.getFuelCost())));
+			PdfPCell cell6 = new PdfPCell(new Paragraph(performance.getMaintanenceType()));
+			PdfPCell cell7 = new PdfPCell(new Paragraph(Double.toString(performance.getMaintanenceCost())));
+			table.addCell(cellDate);
+			table.addCell(cell2);
+			table.addCell(cell3);
+			table.addCell(cell4);
+			table.addCell(cell5);
+			table.addCell(cell6);
+			table.addCell(cell7);
+		}
+		return table;
+	}
+	
+	private void addPerformanceReportTableHeader(PdfPTable table) {
+		PdfPCell cellDate = new PdfPCell(new Paragraph("Date"));
+		PdfPCell cellDriver = new PdfPCell(new Paragraph("Driver"));
+		PdfPCell cellDriverFees = new PdfPCell(new Paragraph("Driver Fees"));
+		PdfPCell cellOwnerIncome = new PdfPCell(new Paragraph("Owner Income"));
+		PdfPCell cellFuel = new PdfPCell(new Paragraph("Fuel"));
+		PdfPCell cellMaintenanceType = new PdfPCell(new Paragraph("Maintenance Type"));
+		PdfPCell cellMaintenanceFees = new PdfPCell(new Paragraph("Maintenance Fees"));
+
+		table.addCell(cellDate);
+		table.addCell(cellDriver);
+		table.addCell(cellDriverFees);
+		table.addCell(cellOwnerIncome);
+		table.addCell(cellFuel);
+		table.addCell(cellMaintenanceType);
+		table.addCell(cellMaintenanceFees);
 	}
 
 }

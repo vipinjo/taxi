@@ -1,7 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
-<nav class="navbar navbar-light bg-info">
+<nav class="navbar navbar-dark bg-primary">
 	<a class="navbar-brand" href="home">Amalia Operations</a>
 	<ul class="nav navbar-nav">
 		<li
@@ -50,8 +49,8 @@
 			class="nav-link" href="admin">Admin</a>
 		</li>
 	</ul>
-	<form class="form-inline pull-xs-right">
+	<!--   <form class="form-inline pull-xs-right">
 		<input class="form-control" type="text" placeholder="Search">
 		<button class="btn btn-outline-success" type="submit">Search</button>
-	</form>
+	</form> -->
 </nav>

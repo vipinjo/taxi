@@ -12,7 +12,7 @@
 		<div class="form-group row">
 			<label for="date" class="col-sm-2 col-form-label">Date</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" id="date" name="date">
+				<input type="text" class="form-control" id="date" name="date" autocomplete="off">
 			</div>
 		</div>
 		

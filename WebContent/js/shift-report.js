@@ -27,9 +27,9 @@ jQuery(function() {
 });
 
 function showShiftReportDetais(id) {
-	$("#shiftReportDetailsModal").modal();
 	var data = $("#" + id +"").val()
 	var obj = JSON.parse(data);
+	$("#shiftReportDetailsTable").empty();
 	$("#shiftReportDetailsTable").append("<tr> <td> Start Time </td> <td>" + obj.date  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Finish Time </td> <td>" + obj.finishDate  +"</td></tr>");
 	$("#shiftReportDetailsTable").append("<tr> <td> Driver </td> <td>" + obj.driver.givenName + " " + obj.driver.familyName  +"</td></tr>");

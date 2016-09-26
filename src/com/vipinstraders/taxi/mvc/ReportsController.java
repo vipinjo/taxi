@@ -142,7 +142,7 @@ public class ReportsController {
 		if (shiftReportList != null && shiftReportList.size() > 0) {
 			response.setContentType("application/pdf");
 			response.setHeader("Content-Disposition",
-					"attachment;filename=shiftReport_" + ReportUtils.getReportPrintTime() + ".pdf");
+					"attachment;filename=shift_report_" + ReportUtils.getReportPrintTime() + ".pdf");
 			try {
 				printService.printShiftReport(searchCriteria, shiftReportDetails, shiftReportList,
 						response.getOutputStream());
@@ -158,7 +158,7 @@ public class ReportsController {
 		if (hasValue(request, "id")) {
 			response.setContentType("application/pdf");
 			response.setHeader("Content-Disposition",
-					"attachment;filename=shiftReportDetails_" + ReportUtils.getReportPrintTime() + ".pdf");
+					"attachment;filename=shift_report_details_" + ReportUtils.getReportPrintTime() + ".pdf");
 			int id = Integer.parseInt(request.getParameter("id"));
 			ShiftReport shiftReport = shiftReportService.getShiftReport(id);
 			try {
@@ -170,16 +170,23 @@ public class ReportsController {
 
 	}
 
-	public void getPerformanceReport() {
-		// get data form shift report on the specified date
-		// get data from the expense table from the specified date
-		// combine the data from both table.
-		// do the calculations owner income minus all the expenses to show the
-		// profit and loss.
-		// use a performance report service class he will do the calculation and
-		// business logic
-		// okay guys. Implement this
-		// All the best
+	@RequestMapping("/downloadPerformanceReport")
+	public void getPerformanceReportAsPdf(HttpServletRequest request, HttpServletResponse response) {
+		PerformanceSearchCriteria searchCriteria = getPerformanceReportSearchCriteria(request);
+		List<Performance> performaceDetailsList = performanceService.getPerformaceDetails(searchCriteria);
+		PerformanceConsidated performanceConsolidatedDetails = performanceService
+				.getPerformanceConsolidatedDetails(searchCriteria);
+		if (performaceDetailsList != null && performaceDetailsList.size() > 0) {
+			response.setContentType("application/pdf");
+			response.setHeader("Content-Disposition",
+					"attachment;filename=performance_report_" + ReportUtils.getReportPrintTime() + ".pdf");
+			try {
+				printService.printPerformanceReport(response.getOutputStream(), searchCriteria, performaceDetailsList,
+						performanceConsolidatedDetails);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private ShiftReportSearchCriteria getSearchCriteria(HttpServletRequest request) {

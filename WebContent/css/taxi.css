@@ -1,17 +1,13 @@
 #footer {
-	background-color: aqua;
+	background-color: #0275d8;
 	padding-top: 150px;
 	margin-top: 50px;
 	text-align: center;
 	padding-bottom: 150px;
-}
+} 
 
 #mainContainer {
 	margin-top:50px;
-}
-
-#header-nav-bar {
-	font-color: #3B5998;
 }
 
 .clearFloat {
@@ -24,4 +20,12 @@
 
 .extraSpace {
 	padding: 10px 10px 10px 10px;
+}
+
+.chart {
+	float: left;
+}
+
+#footerText {
+	color: white;
 }

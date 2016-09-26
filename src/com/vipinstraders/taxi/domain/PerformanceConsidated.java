@@ -2,6 +2,9 @@ package com.vipinstraders.taxi.domain;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class PerformanceConsidated {
 	
 	private Date startDate;
@@ -12,6 +15,8 @@ public class PerformanceConsidated {
 	private double maintanenceCost;
 	private double totalEarnings;
 	private double meterRevenue;
+	
+	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	public PerformanceConsidated() {
 	}
@@ -78,6 +83,11 @@ public class PerformanceConsidated {
 
 	public void setMeterRevenue(double meterRevenue) {
 		this.meterRevenue = meterRevenue;
+	}
+	
+	@Override
+	public String toString() {
+		return gson.toJson(this);
 	}
 
 }

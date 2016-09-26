@@ -112,7 +112,7 @@
 		</div>
 		
 		<div class="form-group row">
-			<label for="onlineReceipt" class="col-sm-2 col-form-label">Online Receipts (EFT Pos)</label>
+			<label for="onlineReceipt" class="col-sm-2 col-form-label">Online Receipts (EftPos)</label>
 			<div class="col-sm-4">
 				<div class="input-group">
                     <span class="input-group-addon">$</span>
