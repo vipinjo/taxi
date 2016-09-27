@@ -4,10 +4,10 @@
 <div id="footer">
 	<div class="row">
 	   <div id="footerText">
-		<h5>Amalia Operations</h5>
+		<h5>Amalia Operations Pty Ltd</h5>
 		<address>
 		    3 Coal court, Epsom<br>
-		    Victoria 3550<br>
+		    Victoria 3551<br>
 		    ABN: 14613714159
 		</address>
 		</div>
